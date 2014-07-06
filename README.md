@@ -1,1 +1,4 @@
-Collection+Json implementation on PHP
+collectionPlusJson-php
+======================
+
+collection+json implementation on PHP

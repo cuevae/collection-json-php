@@ -23,14 +23,15 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     public function testOutput()
     {
         $this->collection->setTemplate( new Template() )->setError( new Error( 'testError', 'testCode', 'This is a test error object' ) );
-        $output = $this->collection->_output();
-        $this->assertEquals( '0.0.1', $output->version );
-        $this->assertEquals( 'http://test.com/api/', $output->href );
-        $this->assertTrue( is_array( $output->links ) );
-        $this->assertTrue( is_array( $output->items ) );
-        $this->assertTrue( is_array( $output->queries ) );
-        $this->assertNotNull( $output->template );
-        $this->assertNotNull( $output->error );
+        $wrapper = $this->collection->_output();
+        $collection = $wrapper->collection;
+        $this->assertEquals( '0.0.1', $collection->version );
+        $this->assertEquals( 'http://test.com/api/', $collection->href );
+        $this->assertTrue( is_array( $collection->links ) );
+        $this->assertTrue( is_array( $collection->items ) );
+        $this->assertTrue( is_array( $collection->queries ) );
+        $this->assertNotNull( $collection->template );
+        $this->assertNotNull( $collection->error );
     }
 
     public function testAddLink()

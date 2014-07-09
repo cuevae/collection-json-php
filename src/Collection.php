@@ -119,7 +119,8 @@ class Collection
     public function _output()
     {
         $properties = get_object_vars( $this );
-        $object = new \StdClass();
+        $wrapper = new \stdClass();
+        $collection = new \StdClass();
         foreach ( $properties as $name => $value ) {
             if ( is_array( $value ) ) {
                 foreach ( $value as &$val ) {
@@ -131,9 +132,10 @@ class Collection
             if ( is_object( $value ) && !$value instanceof \StdClass ) {
                 $value = $value->_output();
             }
-            $object->$name = $value;
+            $collection->$name = $value;
         }
-        return $object;
+        $wrapper->collection = $collection;
+        return $wrapper;
     }
 
 } 

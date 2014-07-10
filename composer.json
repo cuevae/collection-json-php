@@ -1,4 +1,13 @@
 {
+    "authors": [
+        {
+            "name": "Enmanuel Cueva",
+            "email": "cueva.e@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
     "require-dev": {
         "phpunit/phpunit": "4.1.*"
     },

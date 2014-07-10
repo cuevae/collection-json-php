@@ -5,3 +5,4 @@ php:
   - hhvm
 before_script:
   - composer install
+  - composer dump-autoload

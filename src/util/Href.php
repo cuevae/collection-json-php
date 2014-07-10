@@ -7,6 +7,7 @@ class Href {
     /** @var  string */
     protected $uri;
 
+    /** RegExp to identify valid URIs */
     const URI_REGEXP = '#^(https?:\/\/)?(([a-z]+\.)+([a-z]+){1,})?((\/[a-z0-9]+){0,})\/?$#';
 
     /**

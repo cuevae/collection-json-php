@@ -7,7 +7,7 @@ class Href {
     /** @var  string */
     protected $uri;
 
-    const URI_REGEXP = '#^(https?:\/\/[a-z]+)?([a-z.]+)?\/([a-z0-9]+\/?){0,}$#';
+    const URI_REGEXP = '#^(https?:\/\/)?(([a-z]+\.)+([a-z]+){1,})?((\/[a-z0-9]+){0,})\/?$#';
 
     /**
      * @param $uri
@@ -15,7 +15,8 @@ class Href {
      */
     public function __construct( $uri )
     {
-        if ( preg_match( self::URI_REGEXP, $uri ) == false ) {
+        if ( !empty($uri)
+            && preg_match( self::URI_REGEXP, $uri ) == false ) {
             throw new \Exception( 'Invalid URI' );
         }
         $this->uri = $uri;

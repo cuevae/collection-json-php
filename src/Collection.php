@@ -8,8 +8,7 @@ use CollectionPlusJson\Util\Href;
 class Collection
 {
 
-    /** @var string */
-    protected $version;
+    const VERSION = '0.1.0';
 
     /** @var  Href */
     protected $href;
@@ -30,13 +29,19 @@ class Collection
     protected $error;
 
     /**
-     * @param string $version
      * @param Href $href
      */
-    public function __construct( $version, Href $href )
+    public function __construct( Href $href )
     {
-        $this->version = $version;
         $this->href = $href;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion()
+    {
+       return self::VERSION;
     }
 
     /**
@@ -121,6 +126,7 @@ class Collection
         $properties = get_object_vars( $this );
         $wrapper = new \stdClass();
         $collection = new \StdClass();
+        $collection->version = $this->getVersion();
         foreach ( $properties as $name => $value ) {
             if ( is_array( $value ) ) {
                 foreach ( $value as &$val ) {

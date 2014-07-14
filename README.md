@@ -18,7 +18,7 @@ version: 0.1.0
 
 $baseUrl = 'http://api.colors.com/';
 
-$colors = new Collection('0.0.1', new Href($baseUrl));
+$colors = new Collection(new Href($baseUrl));
 
 $color1 = new Item(new Href($baseUrl.'color1'));
 $color1->addData(new DataObject('id', '1', 'This is the color id'))
@@ -40,7 +40,7 @@ Output would be:
 
 {
     "collection": {
-        "version": "0.0.1",
+        "version": "0.1.0",
         "href": "http://api.colors.com/",
         "links": [],
         "items": [

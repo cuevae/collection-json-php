@@ -4,7 +4,6 @@ namespace CollectionPlusJson;
 
 use CollectionPlusJson\Util\Href;
 
-
 class Collection
 {
 
@@ -41,7 +40,7 @@ class Collection
      */
     public function getVersion()
     {
-       return self::VERSION;
+        return self::VERSION;
     }
 
     /**
@@ -127,15 +126,15 @@ class Collection
         $wrapper = new \stdClass();
         $collection = new \StdClass();
         $collection->version = $this->getVersion();
-        foreach ( $properties as $name => $value ) {
-            if ( is_array( $value ) ) {
-                foreach ( $value as &$val ) {
-                    if ( is_object( $val ) ) {
+        foreach ($properties as $name => $value) {
+            if (is_array( $value )) {
+                foreach ($value as &$val) {
+                    if (is_object( $val )) {
                         $val = $val->_output();
                     }
                 }
             }
-            if ( is_object( $value ) && !$value instanceof \StdClass ) {
+            if (is_object( $value ) && !$value instanceof \StdClass) {
                 $value = $value->_output();
             }
             $collection->$name = $value;
@@ -144,4 +143,5 @@ class Collection
         return $wrapper;
     }
 
-} 
+
+}

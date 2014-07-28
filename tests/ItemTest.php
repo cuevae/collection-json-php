@@ -54,5 +54,4 @@ class ItemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( $link1, $links[0] );
         $this->assertEquals( $link2, $links[1] );
     }
-
 }

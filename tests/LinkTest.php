@@ -26,5 +26,4 @@ class LinkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( 'testRender', $output->render );
         $this->assertEquals( 'This is a test Link', $output->prompt );
     }
-
 }

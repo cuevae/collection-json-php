@@ -57,5 +57,4 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertCount( 1, $queries );
         $this->assertEquals( $query, $queries[0] );
     }
-
 }

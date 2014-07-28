@@ -118,7 +118,7 @@ class Query
     }
 
     /**
-     * @return array DataObject[]
+     * @return DataObject[]
      */
     public function getData()
     {

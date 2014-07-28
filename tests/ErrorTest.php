@@ -18,5 +18,4 @@ class ErrorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( 'testCode', $output->code );
         $this->assertEquals( 'This is a test error', $output->message );
     }
-
 }

@@ -33,5 +33,4 @@ class TemplateTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty( $output );
         $this->assertCount( 2, $output );
     }
-
 }

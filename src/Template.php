@@ -25,11 +25,11 @@ class Template
     /**
      * @return array
      */
-    public function _output()
+    public function output()
     {
         $objects = $this->data ? : array();
         foreach ( $objects as &$val ) {
-            $val = $val->_output();
+            $val = $val->output();
         }
         return $objects;
     }

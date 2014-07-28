@@ -120,7 +120,7 @@ class Collection
     /**
      * @return \StdClass
      */
-    public function _output()
+    public function output()
     {
         $properties = get_object_vars( $this );
         $wrapper = new \stdClass();
@@ -130,12 +130,12 @@ class Collection
             if (is_array( $value )) {
                 foreach ($value as &$val) {
                     if (is_object( $val )) {
-                        $val = $val->_output();
+                        $val = $val->output();
                     }
                 }
             }
             if (is_object( $value ) && !$value instanceof \StdClass) {
-                $value = $value->_output();
+                $value = $value->output();
             }
             $collection->$name = $value;
         }

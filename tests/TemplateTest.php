@@ -29,7 +29,7 @@ class TemplateTest extends PHPUnit_Framework_TestCase
     {
         $o1 = new DataObject( 'testName1', 'testValue1', 'This is pair 1' );
         $o2 = new DataObject( 'testName2', 'testValue2', 'This is pair 2' );
-        $output = $this->template->addData( $o1 )->addData( $o2 )->_output();
+        $output = $this->template->addData( $o1 )->addData( $o2 )->output();
         $this->assertNotEmpty( $output );
         $this->assertCount( 2, $output );
     }

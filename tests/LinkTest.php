@@ -19,7 +19,7 @@ class LinkTest extends PHPUnit_Framework_TestCase
 
     public function testOutput()
     {
-        $output = $this->link->_output();
+        $output = $this->link->output();
         $this->assertEquals( 'http://test.com/api/', $output->href );
         $this->assertEquals( 'test', $output->rel );
         $this->assertEquals( 'testLink', $output->name );

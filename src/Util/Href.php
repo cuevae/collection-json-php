@@ -59,7 +59,7 @@ class Href
     /**
      * @return string
      */
-    public function _output()
+    public function output()
     {
         return $this->getUrl();
     }

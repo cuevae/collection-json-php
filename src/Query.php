@@ -128,7 +128,7 @@ class Query
     /**
      * @return \StdClass
      */
-    public function _output()
+    public function output()
     {
         $properties = get_object_vars( $this );
         $object = new \StdClass();
@@ -136,12 +136,12 @@ class Query
             if ( is_array( $value ) ) {
                 foreach ( $value as &$val ) {
                     if ( is_object( $val ) ) {
-                        $val = $val->_output();
+                        $val = $val->output();
                     }
                 }
             }
             if ( is_object( $value ) && !$value instanceof \StdClass ) {
-                $value = $value->_output();
+                $value = $value->output();
             }
             $object->$name = $value;
         }

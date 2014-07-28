@@ -29,7 +29,7 @@ class Error {
     /**
      * @return \StdClass
      */
-    public function _output()
+    public function output()
     {
         $properties = get_object_vars($this);
         $object = new \StdClass();

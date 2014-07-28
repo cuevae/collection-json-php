@@ -13,7 +13,7 @@ class ErrorTest extends PHPUnit_Framework_TestCase
 
     public function testOutput()
     {
-        $output = $this->error->_output();
+        $output = $this->error->output();
         $this->assertEquals( 'testError', $output->title );
         $this->assertEquals( 'testCode', $output->code );
         $this->assertEquals( 'This is a test error', $output->message );

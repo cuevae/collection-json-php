@@ -19,7 +19,7 @@ class QueryTest extends PHPUnit_Framework_TestCase
 
     public function testOutput()
     {
-        $output = $this->query->_output();
+        $output = $this->query->output();
         $this->assertEquals( 'http://test.com/api/', $output->href );
         $this->assertEquals( 'test', $output->rel );
         $this->assertEquals( 'testQuery', $output->name );

@@ -18,7 +18,7 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testOutput()
     {
-        $output = $this->item->_output();
+        $output = $this->item->output();
         $this->assertEquals( 'http://test.com/api/', $output->href );
         $this->assertTrue( is_array( $output->data ) );
         $this->assertTrue( is_array( $output->links ) );

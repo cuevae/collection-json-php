@@ -15,7 +15,7 @@ class DataObjectTest extends PHPUnit_Framework_TestCase
 
     public function testOutput()
     {
-        $output = $this->object->_output();
+        $output = $this->object->output();
         $this->assertEquals( 'testObject', $output->name );
         $this->assertEquals( 'testValue', $output->value );
         $this->assertEquals( 'This is a test DataObject', $output->prompt );

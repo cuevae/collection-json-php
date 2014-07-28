@@ -63,7 +63,7 @@ class HrefTest extends PHPUnit_Framework_TestCase
 
     public function testOutput()
     {
-        $this->assertEquals( 'http://test.com/api/', $this->href->_output() );
+        $this->assertEquals( 'http://test.com/api/', $this->href->output() );
     }
 
     public function validUrls()

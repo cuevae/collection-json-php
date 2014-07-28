@@ -24,7 +24,7 @@ class DataObject
      */
     public function __construct( $name, $value = null, $prompt = '' )
     {
-        if ( is_string( $value )
+        if (is_string( $value )
             || is_int( $value )
             || is_double( $value )
             || is_array( $value )
@@ -37,7 +37,8 @@ class DataObject
             $this->value = $value;
             $this->prompt = $prompt;
         } else {
-            throw new \Exception( 'Type of value is not accepted. Accepted values are: string|int|float|bool|null|array|object' );
+            throw new \Exception(
+                'Type of value is not accepted. Accepted values are: string|int|float|bool|null|array|object' );
         }
     }
 
@@ -100,12 +101,13 @@ class DataObject
      */
     public function _output()
     {
-        $properties = get_object_vars($this);
+        $properties = get_object_vars( $this );
         $object = new \StdClass();
-        foreach ( $properties as $name => $value ) {
+        foreach ($properties as $name => $value) {
             $object->$name = $value;
         }
         return $object;
     }
 
-} 
+
+}

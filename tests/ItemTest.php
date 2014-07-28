@@ -28,7 +28,9 @@ class ItemTest extends PHPUnit_Framework_TestCase
     {
         $o1 = new DataObject( 'testName1', 'testValue1', 'This is pair 1' );
         $o2 = new DataObject( 'testName2', 'testValue2', 'This is pair 2' );
-        $data = $this->item->addData( $o1 )->addData( $o2 )->getData();
+        $data = $this->item->addData( 'testName1', 'testValue1', 'This is pair 1' )
+                           ->addData( 'testName2', 'testValue2', 'This is pair 2' )
+                           ->getData();
         $this->assertNotEmpty( $data );
         $this->assertCount( 2, $data );
         $this->assertEquals( $o1, $data[0] );

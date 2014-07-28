@@ -15,6 +15,13 @@ class DataObject
     /** @var  string */
     protected $prompt;
 
+    /**
+     * @param $name
+     * @param null $value
+     * @param string $prompt
+     *
+     * @throws \Exception
+     */
     public function __construct( $name, $value = null, $prompt = '' )
     {
         if ( is_string( $value )

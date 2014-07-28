@@ -25,7 +25,7 @@ class Item
      * @param \CollectionPlusJson\Util\Href $href
      * @return Item
      */
-    public function setHref( $href )
+    public function setHref( Href $href )
     {
         $this->href = $href;
         return $this;
@@ -59,12 +59,22 @@ class Item
     }
 
     /**
-     * @param DataObject $object
+     * @param $name
+     * @param $value
+     * @param string $prompt
+     *
+     * @throws \Exception
+     *
      * @return Item
      */
-    public function addData( DataObject $object )
+    public function addData( $name, $value, $prompt = '' )
     {
-        $this->data[] = $object;
+        try{
+            $dataObject = new DataObject($name, $value, $prompt);
+            $this->data[] = $dataObject;
+        } catch( \Exception $e ){
+            throw new \Exception('Object could not be added: ' . $e->getMessage() );
+        }
         return $this;
     }
 

@@ -14,26 +14,26 @@ class HrefTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param $Url
+     * @param $url
      *
      * @dataProvider validUrls
      */
-    public function testAcceptedUrls($Url)
+    public function testAcceptedUrls($url)
     {
-        $href = new Href($Url);
+        $href = new Href($url);
         $this->assertInstanceOf('\CollectionPlusJson\Util\Href', $href);
     }
 
     /**
-     * @param $Url
+     * @param $url
      *
      * @dataProvider invalidUrls
      *
      * @expectedException \CollectionPlusJson\Util\Href\Exception\InvalidUrl
      */
-    public function testNonAcceptedUrls($Url)
+    public function testNonAcceptedUrls($url)
     {
-        $href = new Href($Url);
+        new Href($url);
     }
 
     /**
@@ -58,7 +58,7 @@ class HrefTest extends PHPUnit_Framework_TestCase
      */
     public function testExtendingUrlWithInvalidExtension($ext)
     {
-        $href2 = $this->href->extend($ext);
+        $this->href->extend($ext);
     }
 
     public function testOutput()
@@ -125,4 +125,5 @@ class HrefTest extends PHPUnit_Framework_TestCase
         );
     }
 
-} 
+
+}

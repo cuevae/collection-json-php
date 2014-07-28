@@ -16,22 +16,22 @@ class TemplateTest extends PHPUnit_Framework_TestCase
 
     public function testAddDataObject()
     {
-        $o1 = new DataObject( 'testName1', 'testValue1', 'This is pair 1' );
-        $o2 = new DataObject( 'testName2', 'testValue2', 'This is pair 2' );
-        $data = $this->template->addData( $o1 )->addData( $o2 )->getData();
+        $obj1 = new DataObject( 'testName1', 'testValue1', 'This is pair 1' );
+        $obj2 = new DataObject( 'testName2', 'testValue2', 'This is pair 2' );
+        $data = $this->template->addData( $obj1 )->addData( $obj2 )->getData();
         $this->assertNotEmpty( $data );
         $this->assertCount( 2, $data );
-        $this->assertEquals( $o1, $data[0] );
-        $this->assertEquals( $o2, $data[1] );
+        $this->assertEquals( $obj1, $data[0] );
+        $this->assertEquals( $obj2, $data[1] );
     }
 
     public function testOutput()
     {
-        $o1 = new DataObject( 'testName1', 'testValue1', 'This is pair 1' );
-        $o2 = new DataObject( 'testName2', 'testValue2', 'This is pair 2' );
-        $output = $this->template->addData( $o1 )->addData( $o2 )->output();
+        $obj1 = new DataObject( 'testName1', 'testValue1', 'This is pair 1' );
+        $obj2 = new DataObject( 'testName2', 'testValue2', 'This is pair 2' );
+        $output = $this->template->addData( $obj1 )->addData( $obj2 )->output();
         $this->assertNotEmpty( $output );
         $this->assertCount( 2, $output );
     }
 
-} 
+}

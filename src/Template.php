@@ -28,10 +28,9 @@ class Template
     public function output()
     {
         $objects = $this->data ? : array();
-        foreach ( $objects as &$val ) {
+        foreach ($objects as &$val) {
             $val = $val->output();
         }
         return $objects;
     }
-
-} 
+}

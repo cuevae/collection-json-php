@@ -21,4 +21,4 @@ class DataObjectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( 'This is a test DataObject', $output->prompt );
     }
 
-} 
+}

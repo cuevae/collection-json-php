@@ -3,7 +3,8 @@
 namespace CollectionPlusJson;
 
 
-class Error {
+class Error
+{
 
     /** @var  string */
     protected $title;
@@ -31,12 +32,12 @@ class Error {
      */
     public function output()
     {
-        $properties = get_object_vars($this);
+        $properties = get_object_vars( $this );
         $object = new \StdClass();
-        foreach ( $properties as $name => $value ) {
+        foreach ($properties as $name => $value) {
             $object->$name = $value;
         }
         return $object;
     }
 
-} 
+}

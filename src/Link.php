@@ -123,15 +123,14 @@ class Link
      */
     public function output()
     {
-        $properties = get_object_vars($this);
+        $properties = get_object_vars( $this );
         $object = new \StdClass();
-        foreach ( $properties as $name => $value ) {
-            if( is_object( $value ) && ! $value instanceof \StdClass ){
+        foreach ($properties as $name => $value) {
+            if (is_object( $value ) && !$value instanceof \StdClass) {
                 $value = $value->output();
             }
             $object->$name = $value;
         }
         return $object;
     }
-
-} 
+}

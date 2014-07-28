@@ -69,11 +69,11 @@ class Item
      */
     public function addData( $name, $value, $prompt = '' )
     {
-        try{
-            $dataObject = new DataObject($name, $value, $prompt);
+        try {
+            $dataObject = new DataObject( $name, $value, $prompt );
             $this->data[] = $dataObject;
-        } catch( \Exception $e ){
-            throw new \Exception('Object could not be added: ' . $e->getMessage() );
+        } catch ( \Exception $e ) {
+            throw new \Exception( 'Object could not be added: ' . $e->getMessage() );
         }
         return $this;
     }
@@ -93,20 +93,19 @@ class Item
     {
         $properties = get_object_vars( $this );
         $object = new \StdClass();
-        foreach ( $properties as $name => $value ) {
-            if ( is_array( $value ) ) {
-                foreach ( $value as &$val ) {
-                    if ( is_object( $val ) ) {
+        foreach ($properties as $name => $value) {
+            if (is_array( $value )) {
+                foreach ($value as &$val) {
+                    if (is_object( $val )) {
                         $val = $val->output();
                     }
                 }
             }
-            if ( is_object( $value ) && !$value instanceof \StdClass ) {
+            if (is_object( $value ) && !$value instanceof \StdClass) {
                 $value = $value->output();
             }
             $object->$name = $value;
         }
         return $object;
     }
-
-} 
+}

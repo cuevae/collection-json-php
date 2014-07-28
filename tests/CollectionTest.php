@@ -21,7 +21,8 @@ class CollectionTest extends PHPUnit_Framework_TestCase
 
     public function testOutput()
     {
-        $this->collection->setTemplate( new Template() )->setError( new Error( 'testError', 'testCode', 'This is a test error object' ) );
+        $this->collection->setTemplate( new Template() )
+            ->setError( new Error( 'testError', 'testCode', 'This is a test error object' ) );
         $wrapper = $this->collection->output();
         $collection = $wrapper->collection;
         $this->assertEquals( '0.1.0', $collection->version );
@@ -57,4 +58,4 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( $query, $queries[0] );
     }
 
-} 
+}

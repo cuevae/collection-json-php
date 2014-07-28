@@ -20,7 +20,7 @@ class Href
      */
     public function __construct( $url )
     {
-        if (!$this->validate( $url )) {
+        if (!$this->isValid( $url )) {
             throw new InvalidUrl( sprintf( '"%s" is not a valid url', $url ) );
         }
 
@@ -31,7 +31,7 @@ class Href
      * @param string $url
      * @return bool
      */
-    public function validate( $url )
+    public function isValid( $url )
     {
         return preg_match( self::URL_REGEXP, $url ) != false;
     }
@@ -63,5 +63,4 @@ class Href
     {
         return $this->getUrl();
     }
-
-} 
+}

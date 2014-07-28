@@ -37,4 +37,4 @@ class QueryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( $pair1, $data[0] );
     }
 
-} 
+}

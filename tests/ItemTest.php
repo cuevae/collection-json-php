@@ -26,33 +26,33 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testAddDataObject()
     {
-        $o1 = new DataObject( 'testName1', 'testValue1', 'This is pair 1' );
-        $o2 = new DataObject( 'testName2', 'testValue2', 'This is pair 2' );
+        $obj1 = new DataObject( 'testName1', 'testValue1', 'This is pair 1' );
+        $obj2 = new DataObject( 'testName2', 'testValue2', 'This is pair 2' );
         $data = $this->item->addData( 'testName1', 'testValue1', 'This is pair 1' )
                            ->addData( 'testName2', 'testValue2', 'This is pair 2' )
                            ->getData();
         $this->assertNotEmpty( $data );
         $this->assertCount( 2, $data );
-        $this->assertEquals( $o1, $data[0] );
-        $this->assertEquals( $o2, $data[1] );
+        $this->assertEquals( $obj1, $data[0] );
+        $this->assertEquals( $obj2, $data[1] );
     }
 
     public function testAddLink()
     {
-        $l1 = new Link(
+        $link1 = new Link(
             new Href( 'http://test.com/api/' ),
             'test'
         );
-        $l2 = new Link(
+        $link2 = new Link(
             new Href( 'http://test.com/api/' ),
             'test'
         );
 
-        $links = $this->item->addLink( $l1 )->addLink( $l2 )->getLinks();
+        $links = $this->item->addLink( $link1 )->addLink( $link2 )->getLinks();
         $this->assertNotEmpty( $links );
         $this->assertCount( 2, $links );
-        $this->assertEquals( $l1, $links[0] );
-        $this->assertEquals( $l2, $links[1] );
+        $this->assertEquals( $link1, $links[0] );
+        $this->assertEquals( $link2, $links[1] );
     }
 
-} 
+}

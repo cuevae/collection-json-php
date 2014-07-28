@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/cuevaec/collectionPlusJson-php.svg?branch=master)](https://travis-ci.org/cuevaec/collectionPlusJson-php)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cuevaec/collectionPlusJson-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/cuevaec/collectionPlusJson-php/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/cuevaec/collectionPlusJson-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/cuevaec/collectionPlusJson-php/?branch=master)
+[![Build Status](https://travis-ci.org/cuevae/collectionPlusJson-php.svg?branch=master)](https://travis-ci.org/cuevae/collectionPlusJson-php)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cuevae/collectionPlusJson-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/cuevae/collectionPlusJson-php/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/cuevae/collectionPlusJson-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/cuevae/collectionPlusJson-php/?branch=master)
 
 # collectionPlusJson-php
 
-version: 0.1.0
+version: 0.2.0
 
 ## Introduction
 >**Collection+JSON** is a JSON-based read/write hypermedia-type designed to support management and querying of simple collections.
@@ -16,24 +16,23 @@ version: 0.1.0
 ## Example
 ```php
 
-$baseUrl = 'http://api.colors.com/';
+$baseUrl = new Href('http://api.colors.io/');
 
-$colors = new Collection(new Href($baseUrl));
+$colors = new Collection($baseUrl);
 
-$color1 = new Item(new Href($baseUrl.'color1'));
-$color1->addData(new DataObject('id', '1', 'This is the color id'))
-       ->addData(new DataObject('hex_value', '#9932CC', 'This is the color in hex format'))
-       ->addData(new DataObject('human_value', 'DarkOrchid', 'This is the color in human readable format'));
+$color1 = new Item($baseUrl->extend('color1'));
+$color1->addData('id', '1', 'This is the color id')
+        ->addData('hex_value', '#9932CC', 'This is the color in hex format')
+        ->addData('human_value', 'DarkOrchid', 'This is the color in human readable format');
 
-$color2 = new Item(new Href($baseUrl.'color2'));
-$color2->addData(new DataObject('id', '2', 'This is the color id'))
-       ->addData(new DataObject('hex_value', '#FFFFF0', 'This is the color in hex format'))
-       ->addData(new DataObject('human_value', 'Ivory', 'This is the color in human readable format'));
+$color2 = new Item($baseUrl->extend('color2'));
+$color2->addData('id', '2', 'This is the color id')
+        ->addData('hex_value', '#FFFFF0', 'This is the color in hex format')
+        ->addData('human_value', 'Ivory', 'This is the color in human readable format');
 
 $colors->addItem($color1)->addItem($color2);
-        
-echo json_encode($colors->_output());
 
+echo json_encode($colors->_output());
 /*
 
 Output would be:
@@ -41,11 +40,11 @@ Output would be:
 {
     "collection": {
         "version": "0.1.0",
-        "href": "http://api.colors.com/",
+        "href": "http://api.colors.io/",
         "links": [],
         "items": [
             {
-                "href": "http://api.colors.com/color1",
+                "href": "http://api.colors.io/color1",
                 "data": [
                     {
                         "name": "id",
@@ -66,7 +65,7 @@ Output would be:
                 "links": []
             },
             {
-                "href": "http://api.colors.com/color2",
+                "href": "http://api.colors.io/color2",
                 "data": [
                     {
                         "name": "id",
@@ -92,6 +91,7 @@ Output would be:
         "error": null
     }
 }
+
 */
 
 ```

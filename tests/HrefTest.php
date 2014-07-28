@@ -14,26 +14,51 @@ class HrefTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param $uri
+     * @param $Url
      *
-     * @dataProvider validUris
+     * @dataProvider validUrls
      */
-    public function testAcceptedUris($uri)
+    public function testAcceptedUrls($Url)
     {
-        $href = new Href($uri);
+        $href = new Href($Url);
         $this->assertInstanceOf('\CollectionPlusJson\Util\Href', $href);
     }
 
     /**
-     * @param $uri
+     * @param $Url
      *
-     * @dataProvider invalidUris
+     * @dataProvider invalidUrls
      *
-     * @expectedException Exception
+     * @expectedException \CollectionPlusJson\Util\Href\Exception\InvalidUrl
      */
-    public function testNonAcceptedUris($uri)
+    public function testNonAcceptedUrls($Url)
     {
-        $href = new Href($uri);
+        $href = new Href($Url);
+    }
+
+    /**
+     * @param $ext
+     *
+     * @dataProvider validExtensions
+     */
+    public function testExtendingUrlWithValidExtension($ext)
+    {
+        $currentUrl = $this->href->getUrl();
+        $href2 = $this->href->extend($ext);
+        $extendedUrl = $href2->getUrl();
+        $this->assertEquals( $currentUrl . $ext, $extendedUrl );
+    }
+
+    /**
+     * @param $ext
+     *
+     * @expectedException \CollectionPlusJson\Util\Href\Exception\InvalidUrl
+     *
+     * @dataProvider invalidExtensions
+     */
+    public function testExtendingUrlWithInvalidExtension($ext)
+    {
+        $href2 = $this->href->extend($ext);
     }
 
     public function testOutput()
@@ -41,7 +66,7 @@ class HrefTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( 'http://test.com/api/', $this->href->_output() );
     }
 
-    public function validUris()
+    public function validUrls()
     {
         return array(
             array('http://api.estimate.local'),
@@ -58,7 +83,7 @@ class HrefTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function invalidUris()
+    public function invalidUrls()
     {
         return array(
             array('http://api.estimate.local.'),
@@ -76,6 +101,27 @@ class HrefTest extends PHPUnit_Framework_TestCase
             array('..'),
             array('./'),
             array('./estimate.local'),
+        );
+    }
+
+    public function validExtensions()
+    {
+        return array(
+            array('ext'),
+            array('1'),
+            array('ext/t'),
+            array('ext/test'),
+        );
+    }
+
+    public function invalidExtensions()
+    {
+        return array(
+            array('/ext'), //Current url already ends in "/"
+            array('.'),
+            array('_'),
+            array('\\'),
+            array('/'),
         );
     }
 

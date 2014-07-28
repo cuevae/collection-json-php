@@ -2,41 +2,66 @@
 
 namespace CollectionPlusJson\Util;
 
-class Href {
+use CollectionPlusJson\Util\Href\Exception\InvalidUrl;
+
+class Href
+{
 
     /** @var  string */
-    protected $uri;
+    protected $url;
 
-    /** RegExp to identify valid URIs */
-    const URI_REGEXP = '#^(https?:\/\/)?(([a-z]+\.)+([a-z]+){1,})?((\/[a-z0-9]+){0,})\/?$#';
+    /** RegExp to identify valid URLs */
+    const URL_REGEXP = '#^(https?:\/\/)?(([a-z]+\.)+([a-z]+){1,})?((\/[a-z0-9]+){0,})\/?$#';
 
     /**
-     * @param $uri
-     * @throws \Exception
+     * @param $url
+     *
+     * @throws InvalidUrl
      */
-    public function __construct( $uri )
+    public function __construct( $url )
     {
-        if ( !empty($uri)
-            && preg_match( self::URI_REGEXP, $uri ) == false ) {
-            throw new \Exception( 'Invalid URI' );
+        if (!$this->validate( $url )) {
+            throw new InvalidUrl( sprintf( '"%s" is not a valid url', $url ) );
         }
-        $this->uri = $uri;
+
+        $this->url = $url;
+    }
+
+    /**
+     * @param string $url
+     * @return bool
+     */
+    public function validate( $url )
+    {
+        return preg_match( self::URL_REGEXP, $url ) != false;
     }
 
     /**
      * @return string
      */
-    public function getUri()
+    public function getUrl()
     {
-        return $this->uri;
+        return $this->url;
     }
+
+    /**
+     * @param $ext
+     * @return Href
+     *
+     * @throws InvalidUrl
+     */
+    public function extend( $ext )
+    {
+        return new Href( $this->getUrl() . $ext );
+    }
+
 
     /**
      * @return string
      */
     public function _output()
     {
-        return $this->getUri();
+        return $this->getUrl();
     }
 
 } 

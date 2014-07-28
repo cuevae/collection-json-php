@@ -101,7 +101,6 @@ checks:
         no_empty_statements: true
         no_debug_code: true
         no_commented_out_code: true
-        newline_at_end_of_file: true
         naming_conventions:
             local_variable: '^[a-z][a-zA-Z0-9]*$'
             abstract_class_name: ^Abstract|Factory$

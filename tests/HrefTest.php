@@ -124,6 +124,4 @@ class HrefTest extends PHPUnit_Framework_TestCase
             array('/'),
         );
     }
-
-
 }

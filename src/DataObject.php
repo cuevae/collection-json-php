@@ -108,6 +108,4 @@ class DataObject
         }
         return $object;
     }
-
-
 }

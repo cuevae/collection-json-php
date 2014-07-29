@@ -80,6 +80,17 @@ class Collection
     }
 
     /**
+     * @param Item[] $items
+     */
+    public function addItems(array $items)
+    {
+        foreach ($items as $item)
+        {
+            $this->addItem($item);
+        }
+    }
+
+    /**
      * @return Item[]
      */
     public function getItems()

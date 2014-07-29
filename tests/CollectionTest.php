@@ -25,7 +25,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
             ->setError( new Error( 'testError', 'testCode', 'This is a test error object' ) );
         $wrapper = $this->collection->output();
         $collection = $wrapper->collection;
-        $this->assertEquals( '0.1.0', $collection->version );
+        $this->assertNotEmpty( $collection->version );
         $this->assertEquals( 'http://test.com/api/', $collection->href );
         $this->assertTrue( is_array( $collection->links ) );
         $this->assertTrue( is_array( $collection->items ) );

@@ -36,6 +36,14 @@ class Collection
     }
 
     /**
+     * @return Href
+     */
+    public function getHref()
+    {
+        return $this->href;
+    }
+
+    /**
      * @return string
      */
     public function getVersion()

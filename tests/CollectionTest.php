@@ -34,6 +34,12 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull( $collection->error );
     }
 
+    public function testGetHref()
+    {
+        $href = $this->collection->getHref();
+        $this->assertInstanceOf('\collectionPlusJson\Util\Href', $href);
+    }
+
     public function testAddLink()
     {
         $link = new Link( new Href( 'http://test.com/api/' ), 'test' );

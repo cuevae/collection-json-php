@@ -70,7 +70,8 @@ class HrefTest extends PHPUnit_Framework_TestCase
     {
         return array(
             array('http://api.estimate.local'),
-            array('http://test.com/api/'),
+            array('https://test.com/api/'),
+            array('http://localhost:8080/test/1'),
             array('http://test.com/api/test/1'),
             array('http://test.com/api/1/test'),
             array('http://test.com/api/1/2'),

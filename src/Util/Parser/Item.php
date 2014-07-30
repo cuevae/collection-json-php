@@ -11,7 +11,6 @@ class Item
 
     const HREF_KEY = 'href';
     const DATA_KEY = 'data';
-    const OBJECT_NAME_KEY = 'name';
 
     /**
      * @var array
@@ -93,13 +92,26 @@ class Item
                 $result = false;
                 break;
             }
-            if (empty($object))
+            if (count($object) < 2)
             {
                 $result = false;
                 break;
             }
-            if (!isset($object[static::OBJECT_NAME_KEY]))
-            {
+            $name = current($object);
+            if(empty($name)){
+                $result = false;
+                break;
+            }
+            next($object);
+            $value = current($object);
+            if(!is_string( $value )
+               && !is_int( $value )
+               && !is_double( $value )
+               && !is_array( $value )
+               && !is_bool( $value )
+               && !is_null( $value )
+               && !is_object( $value )
+            ){
                 $result = false;
                 break;
             }

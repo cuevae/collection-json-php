@@ -86,9 +86,24 @@ class ItemTest extends \PHPUnit_Framework_TestCase
     public function isValidDataArrayProvider()
     {
         return array(
-            array( array( 'data' => array( 'name' => '' ) ), true ),
+
+            //Valid data
+            array( array( 'data' => array( 'name', 'value' ) ), true ),
+            array( array( 'data' => array( 'name' => 'name', 'value' => 'value' ) ), true ),
+            array( array( 'data' => array( 'name', '' ) ), true ),
+            array( array( 'data' => array( 'name', 1 ) ), true ),
+            array( array( 'data' => array( 'name', 1.0 ) ), true ),
+            array( array( 'data' => array( 'name', array() ) ), true ),
+            array( array( 'data' => array( 'name', true ) ), true ),
+            array( array( 'data' => array( 'name', null ) ), true ),
+            array( array( 'data' => array( 'name', new \StdClass() ) ), true ),
+
+            //Invalid data
+            array( array( 'data' => array( '', '' ) ), false ),
+            array( array( 'data' => array( '', 'value' ) ), false ),
             array( array( 'data' => array() ), false ),
             array( array( 'data' => array( 'foo' => 'bar' ) ), false ),
+            array( array( 'data' => array( 'name' => '', 'value' => '' ) ), false ),
         );
     }
 

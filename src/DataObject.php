@@ -30,7 +30,6 @@ class DataObject
             || is_array( $value )
             || is_bool( $value )
             || is_null( $value )
-            || is_array( $value )
             || is_object( $value )
         ) {
             $this->name = $name;

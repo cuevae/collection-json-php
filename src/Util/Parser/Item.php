@@ -83,6 +83,24 @@ class Item
     }
 
     /**
+     * @param array $input
+     *
+     * @return CollectionItem[]
+     *
+     * @throws \Exception
+     */
+    public function parseManyFromArray( array $input )
+    {
+        $items = array();
+        foreach ($input as $itemArray)
+        {
+            $items[] = $this->parseOneFromArray($itemArray);
+        }
+
+        return $items;
+    }
+
+    /**
      * Checks if the data for a given item is correct
      *
      * @param array $data

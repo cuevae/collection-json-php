@@ -34,8 +34,10 @@ class ItemTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseOneFromArray()
     {
+        $itemHref = 'http://test.io/item/1';
+
         $input = array(
-            'href' => 'http://test.io/',
+            'href' => $itemHref,
             'data' => array(
                 array( 'id', 1, 'This is the item id' ),
                 array( 'name', 'bar', 'This is the item name' ),
@@ -44,7 +46,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $controlItem = new \CollectionPlusJson\Item(new Href('http://test.io/'));
+        $controlItem = new \CollectionPlusJson\Item(new Href($itemHref));
         $controlItem->addData('id', 1, 'This is the item id');
         $controlItem->addData('name', 'bar', 'This is the item name');
         $controlItem->addData('value', 'foo', 'This is the item value');
@@ -66,7 +68,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
         $mock->expects($this->once())
              ->method('itemInit')
              ->with($input)
-             ->willReturn(new \CollectionPlusJson\Item(new Href('http://test.io/')));
+             ->willReturn(new \CollectionPlusJson\Item(new Href($itemHref)));
 
         $mock->expects($this->once())
              ->method('isValidDataArray')
@@ -77,6 +79,68 @@ class ItemTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\CollectionPlusJson\Item', $result);
         $this->assertEquals($controlItem, $result);
     }
+
+    /**
+     *
+     */
+    public function testParseManyFromArray()
+    {
+        $input = array(
+            array(
+                'href' => 'http://test.io/item/1',
+                'data' => array(
+                    array( 'id', 1, 'This is the item id' ),
+                    array( 'name', 'bar', 'This is the item name' ),
+                    array( 'value', 'foo', 'This is the item value' ),
+                    array( 'timestamp', 1608897600 )
+                )
+            ),
+            array(
+                'href' => 'http://test.io/item/2',
+                'data' => array(
+                    array( 'id', 2, 'This is the item id' ),
+                    array( 'name', 'den', 'This is the item name' ),
+                    array( 'value', 'tas', 'This is the item value' ),
+                    array( 'timestamp', 1608897600 ),
+                )
+            )
+        );
+
+        $controlItem1 = new \CollectionPlusJson\Item(new Href('http://test.io/item/1'));
+        $controlItem1->addData('id', 1, 'This is the item id');
+        $controlItem1->addData('name', 'bar', 'This is the item name');
+        $controlItem1->addData('value', 'foo', 'This is the item value');
+        $controlItem1->addData('timestamp', 1608897600);
+
+        $controlItem2 = new \CollectionPlusJson\Item(new Href('http://test.io/item/2'));
+        $controlItem2->addData('id', 2, 'This is the item id');
+        $controlItem2->addData('name', 'den', 'This is the item name');
+        $controlItem2->addData('value', 'tas', 'This is the item value');
+        $controlItem2->addData('timestamp', 1608897600);
+
+        $controlItems = array(
+            $controlItem1,
+            $controlItem2
+        );
+
+        /** @var \CollectionPlusJson\Util\Parser\Item $mock */
+        $mock = $this->getMock('\CollectionPlusJson\Util\Parser\Item',
+                               array( 'hasRequiredKeys',
+                                      'isValidDataArray' )
+        );
+
+        $mock->expects($this->exactly(count($controlItems)))
+             ->method('hasRequiredKeys')
+             ->willReturn(true);
+
+        $mock->expects($this->exactly(count($controlItems)))
+             ->method('isValidDataArray')
+             ->willReturn(true);
+
+        $result = $mock->parseManyFromArray($input);
+        $this->assertEquals($controlItems, $result);
+    }
+
 
     /**
      * @dataProvider requiredKeysProvider

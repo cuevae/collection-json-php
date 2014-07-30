@@ -63,7 +63,19 @@ class Item
             {
                 throw new \Exception('Item data cannot be parsed. Check it\'s format is the following
                 \'data\' => array( array( \'name\', \'value\', \'prompt\') ). You can add as many inner arrays as you
-                like, name is the only required field');
+                like, name and value are required fields.');
+            }
+            foreach ($data as $object)
+            {
+                $name = current($object);
+                next($object);
+                $value  = current($object);
+                $prompt = '';
+                if (next($object))
+                {
+                    $prompt = current($object);
+                }
+                $item->addData($name, $value, $prompt);
             }
         }
 
@@ -98,20 +110,22 @@ class Item
                 break;
             }
             $name = current($object);
-            if(empty($name)){
+            if (empty($name))
+            {
                 $result = false;
                 break;
             }
             next($object);
             $value = current($object);
-            if(!is_string( $value )
-               && !is_int( $value )
-               && !is_double( $value )
-               && !is_array( $value )
-               && !is_bool( $value )
-               && !is_null( $value )
-               && !is_object( $value )
-            ){
+            if (!is_string($value)
+                && !is_int($value)
+                && !is_double($value)
+                && !is_array($value)
+                && !is_bool($value)
+                && !is_null($value)
+                && !is_object($value)
+            )
+            {
                 $result = false;
                 break;
             }

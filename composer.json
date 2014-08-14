@@ -1,5 +1,5 @@
 {
-    "name": "cuevae/collectionPlusJson",
+    "name": "cuevae/collection-plus-json",
     "type" : "library",
     "description": "Collection+JSON is a JSON-based read/write hypermedia-type designed to support management and querying of simple collections.",
     "keywords": ["collection", "json", "collection+json"],

@@ -1,8 +1,16 @@
 {
+    "name": "cuevae/collectionPlusJson",
+    "type" : "library",
+    "description": "Collection+JSON is a JSON-based read/write hypermedia-type designed to support management and querying of simple collections.",
+    "keywords": ["collection", "json", "collection+json"],
+    "homepage": "https://github.com/cuevae/collectionPlusJson-php",
+    "license": "MIT",
     "authors": [
         {
             "name": "Enmanuel Cueva",
-            "email": "cueva.e@hotmail.com"
+            "email": "cueva.e@hotmail.com",
+            "homepage": "http://cueva-e.me",
+            "role": "Software Engineer/Developer"
         }
     ],
     "require": {

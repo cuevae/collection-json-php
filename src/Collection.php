@@ -28,19 +28,19 @@ class Collection
     protected $error;
 
     /**
-     * @param Href $href
+     * @param string $href
      */
-    public function __construct( Href $href )
+    public function __construct( $href )
     {
-        $this->href = $href;
+        $this->href = new Href($href);
     }
 
     /**
-     * @return Href
+     * @return string
      */
     public function getHref()
     {
-        return $this->href;
+        return $this->href->getUrl();
     }
 
     /**

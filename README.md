@@ -4,7 +4,7 @@
 
 # collectionPlusJson-php
 
-version: 1.0.0
+version: 1.0.1
 
 ## Introduction
 >**Collection+JSON** is a JSON-based read/write hypermedia-type designed to support management and querying of simple collections.
@@ -37,15 +37,15 @@ $color2->addLink(new Link('http://www.w3schools.com/tags/ref_color_tryit.asp?hex
 $colors->addItems([$color1, $color2]);
 
 $query = new Query($colors->getHref()->extend('search'), 'search');
-$query->addData('search', '');
+$query->addData('search');
 $colors->addQuery($query);
 
 $template = new Template();
-$template->addData('id', '', 'This is the color id.')
-         ->addData('hex_value', '', 'This is the color in hex format.')
-         ->addData('human_value', '', 'This is the color in human readable format.')
-         ->addData('source', '', 'Link to colors source.')
-         ->addData('color-test', '', 'Link to test how your color looks with other colors.');
+$template->addData('id', 'This is the color id.')
+         ->addData('hex_value', 'This is the color in hex format.')
+         ->addData('human_value', 'This is the color in human readable format.')
+         ->addData('source', 'Link to colors source.')
+         ->addData('color-test', 'Link to test how your color looks with other colors.');
 $colors->setTemplate($template);
 
 $error = new Error('error-test', 'ABC123', 'This is a test error. Server has encountered a problem and could not process your request, please try later.');

@@ -8,9 +8,14 @@ class Template
     /** @var  DataObject[] */
     protected $data = array();
 
-    public function addData( DataObject $object )
+    public function addData( $name, $value, $prompt = '' )
     {
-        $this->data[] = $object;
+        try {
+            $dataObject = new DataObject( $name, $value, $prompt );
+            $this->data[] = $dataObject;
+        } catch ( \Exception $e ) {
+            throw new \Exception( 'Object could not be added: ' . $e->getMessage() );
+        }
         return $this;
     }
 

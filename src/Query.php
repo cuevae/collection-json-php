@@ -80,14 +80,13 @@ class Query
 
     /**
      * @param $name
-     * @param $value
      * @throws \Exception
      * @return Query
      */
-    public function addData( $name, $value )
+    public function addData( $name )
     {
         try {
-            $dataObject = new DataObject( $name, $value );
+            $dataObject = new DataObject( $name );
             $this->data[] = $dataObject;
         } catch ( \Exception $e ) {
             throw new \Exception( 'Object could not be added: ' . $e->getMessage() );

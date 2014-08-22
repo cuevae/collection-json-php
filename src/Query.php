@@ -86,7 +86,7 @@ class Query
     public function addData( $name )
     {
         try {
-            $dataObject = new DataObject( $name );
+            $dataObject = new DataObject( $name, '' );
             $this->data[] = $dataObject;
         } catch ( \Exception $e ) {
             throw new \Exception( 'Object could not be added: ' . $e->getMessage() );

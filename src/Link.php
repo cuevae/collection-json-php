@@ -23,14 +23,17 @@ class Link
     protected $render;
 
     /**
-     * @param Href $href
-     * @param $rel
+     * @param string|Href $href
+     * @param string $rel
      * @param string $name
      * @param string $render
      * @param string $prompt
      */
-    public function __construct( Href $href, $rel, $name = '', $render = '', $prompt = '' )
+    public function __construct( $href, $rel, $name = '', $render = '', $prompt = '' )
     {
+        if(!$href instanceof Href){
+            $href = new Href($href);
+        }
         $this->href = $href;
         $this->rel = $rel;
         $this->name = $name;
@@ -39,15 +42,18 @@ class Link
     }
 
     /**
-     * @param \CollectionPlusJson\Util\Href $href
+     * @param string|Href $href
      */
     public function setHref( $href )
     {
+        if(!$href instanceof Href){
+            $href = new Href($href);
+        }
         $this->href = $href;
     }
 
     /**
-     * @return \CollectionPlusJson\Util\Href
+     * @return Href
      */
     public function getHref()
     {

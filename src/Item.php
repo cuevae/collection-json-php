@@ -16,23 +16,32 @@ class Item
     /** @var  Link[] */
     protected $links = array();
 
-    public function __construct( Href $href )
+    /**
+     * @param string|Href $href
+     */
+    public function __construct( $href )
     {
+        if(!$href instanceof Href){
+            $href = new Href($href);
+        }
         $this->href = $href;
     }
 
     /**
-     * @param \CollectionPlusJson\Util\Href $href
+     * @param string|Href $href
      * @return Item
      */
     public function setHref( Href $href )
     {
+        if(!$href instanceof Href){
+            $href = new Href($href);
+        }
         $this->href = $href;
         return $this;
     }
 
     /**
-     * @return \CollectionPlusJson\Util\Href
+     * @return Href
      */
     public function getHref()
     {
@@ -51,7 +60,7 @@ class Item
 
 
     /**
-     * @return \CollectionPlusJson\Link[]
+     * @return Link[]
      */
     public function getLinks()
     {
@@ -79,7 +88,7 @@ class Item
     }
 
     /**
-     * @return \CollectionPlusJson\DataObject[]
+     * @return DataObject[]
      */
     public function getData()
     {

@@ -23,14 +23,17 @@ class Query
     protected $data;
 
     /**
-     * @param Href $href
-     * @param $rel
+     * @param string|Href $href
+     * @param string $rel
      * @param string $name
      * @param string $prompt
      * @param array $data
      */
-    public function __construct( Href $href, $rel, $name = '', $prompt = '', $data = array() )
+    public function __construct( $href, $rel, $name = '', $prompt = '', $data = array() )
     {
+        if(!$href instanceof Href){
+            $href = new Href($href);
+        }
         $this->href = $href;
         $this->rel = $rel;
         $this->name = $name;
@@ -39,11 +42,14 @@ class Query
     }
 
     /**
-     * @param Href $href
+     * @param string|Href $href
      * @return Query
      */
-    public function setHref( Href $href )
+    public function setHref( $href )
     {
+        if(!$href instanceof Href){
+            $href = new Href($href);
+        }
         $this->href = $href;
         return $this;
     }

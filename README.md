@@ -4,7 +4,7 @@
 
 # collectionPlusJson-php
 
-version: 0.4.0
+version: 0.5.0
 
 ## Introduction
 >**Collection+JSON** is a JSON-based read/write hypermedia-type designed to support management and querying of simple collections.
@@ -28,7 +28,7 @@ $color2->addData('id', '2', 'This is the color id')
        ->addData('hex_value', '#FFFFF0', 'This is the color in hex format')
        ->addData('human_value', 'Ivory', 'This is the color in human readable format');
 
-$colors->addItem($color1)->addItem($color2);
+$colors->addItems([$color1, $color2]);
 
 echo json_encode($colors->output());
 

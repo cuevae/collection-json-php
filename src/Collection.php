@@ -7,7 +7,7 @@ use CollectionPlusJson\Util\Href;
 class Collection
 {
 
-    const VERSION = '0.4.0';
+    const VERSION = '0.5.0';
 
     /** @var  Href */
     protected $href;
@@ -28,11 +28,14 @@ class Collection
     protected $error;
 
     /**
-     * @param string $href
+     * @param string $href|Href
      */
     public function __construct( $href )
     {
-        $this->href = new Href($href);
+        if(!$href instanceof Href){
+            $href = new Href($href);
+        }
+        $this->href = $href;
     }
 
     /**

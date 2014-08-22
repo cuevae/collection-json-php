@@ -4,7 +4,7 @@
 
 # collectionPlusJson-php
 
-version: 0.3.0
+version: 0.4.0
 
 ## Introduction
 >**Collection+JSON** is a JSON-based read/write hypermedia-type designed to support management and querying of simple collections.
@@ -16,30 +16,28 @@ version: 0.3.0
 ## Example
 ```php
 
-$baseUrl = new Href('http://api.colors.io/');
+$colors = new Collection('http://api.colors.io/');
 
-$colors = new Collection($baseUrl);
-
-$color1 = new Item($baseUrl->extend('color1'));
+$color1 = new Item($colors->getHref()->extend('color1'));
 $color1->addData('id', '1', 'This is the color id')
-        ->addData('hex_value', '#9932CC', 'This is the color in hex format')
-        ->addData('human_value', 'DarkOrchid', 'This is the color in human readable format');
+       ->addData('hex_value', '#9932CC', 'This is the color in hex format')
+       ->addData('human_value', 'DarkOrchid', 'This is the color in human readable format');
 
-$color2 = new Item($baseUrl->extend('color2'));
+$color2 = new Item($colors->getHref()->extend('color2'));
 $color2->addData('id', '2', 'This is the color id')
-        ->addData('hex_value', '#FFFFF0', 'This is the color in hex format')
-        ->addData('human_value', 'Ivory', 'This is the color in human readable format');
+       ->addData('hex_value', '#FFFFF0', 'This is the color in hex format')
+       ->addData('human_value', 'Ivory', 'This is the color in human readable format');
 
 $colors->addItem($color1)->addItem($color2);
 
 echo json_encode($colors->output());
-/*
 
+/*
 Output would be:
 
 {
     "collection": {
-        "version": "0.1.0",
+        "version": "0.4.0",
         "href": "http://api.colors.io/",
         "links": [],
         "items": [

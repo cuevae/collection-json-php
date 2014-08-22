@@ -36,7 +36,7 @@ class Collection
     }
 
     /**
-     * @return string
+     * @return Href
      */
     public function getHref()
     {

@@ -37,7 +37,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     public function testGetHref()
     {
         $href = $this->collection->getHref();
-        $this->assertEquals('http://test.com/api/', $href);
+        $this->assertEquals('http://test.com/api/', $href->getUrl());
     }
 
     public function testAddLink()

@@ -59,7 +59,7 @@ Output would be:
 
 {
     "collection": {
-        "version": "0.5.2",
+        "version": "1.0.1",
         "href": "http://api.colors.io/",
         "links": [
             {

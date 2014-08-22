@@ -69,6 +69,7 @@ class HrefTest extends PHPUnit_Framework_TestCase
     public function validUrls()
     {
         return array(
+            array('http://www.w3schools.com/tags/ref_colornames.asp'),
             array('http://api.estimate.local'),
             array('https://test.com/api/'),
             array('http://localhost:8080/test/1'),

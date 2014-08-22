@@ -7,7 +7,7 @@ use CollectionPlusJson\Util\Href;
 class Collection
 {
 
-    const VERSION = '0.3.0';
+    const VERSION = '0.4.0';
 
     /** @var  Href */
     protected $href;
@@ -40,7 +40,7 @@ class Collection
      */
     public function getHref()
     {
-        return $this->href->getUrl();
+        return $this->href;
     }
 
     /**

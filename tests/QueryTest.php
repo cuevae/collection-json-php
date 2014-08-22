@@ -11,7 +11,6 @@ class QueryTest extends PHPUnit_Framework_TestCase
         $this->query = new \CollectionPlusJson\Query(
             new \CollectionPlusJson\Util\Href( 'http://test.com/api/' ),
             'test',
-            'testQuery',
             'This is a test Query',
             array()
         );
@@ -22,7 +21,6 @@ class QueryTest extends PHPUnit_Framework_TestCase
         $output = $this->query->output();
         $this->assertEquals( 'http://test.com/api/', $output->href );
         $this->assertEquals( 'test', $output->rel );
-        $this->assertEquals( 'testQuery', $output->name );
         $this->assertEquals( 'This is a test Query', $output->prompt );
         $this->assertTrue( is_array( $output->data ) );
         $this->assertEmpty( $output->data );

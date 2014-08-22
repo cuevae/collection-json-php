@@ -16,26 +16,21 @@ class Query
     /** @var  string */
     protected $prompt;
 
-    /** @var  string */
-    protected $name;
-
     /** @var  DataObject[] */
     protected $data;
 
     /**
      * @param string|Href $href
      * @param string $rel
-     * @param string $name
      * @param string $prompt
      */
-    public function __construct( $href, $rel, $name = '', $prompt = '' )
+    public function __construct( $href, $rel, $prompt = '' )
     {
         if(!$href instanceof Href){
             $href = new Href($href);
         }
         $this->href = $href;
         $this->rel = $rel;
-        $this->name = $name;
         $this->prompt = $prompt;
         $this->data = array();
     }

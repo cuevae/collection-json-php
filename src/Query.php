@@ -27,9 +27,8 @@ class Query
      * @param string $rel
      * @param string $name
      * @param string $prompt
-     * @param array $data
      */
-    public function __construct( $href, $rel, $name = '', $prompt = '', $data = array() )
+    public function __construct( $href, $rel, $name = '', $prompt = '' )
     {
         if(!$href instanceof Href){
             $href = new Href($href);
@@ -38,7 +37,7 @@ class Query
         $this->rel = $rel;
         $this->name = $name;
         $this->prompt = $prompt;
-        $this->data = $data;
+        $this->data = array();
     }
 
     /**
@@ -85,12 +84,19 @@ class Query
     }
 
     /**
-     * @param DataObject $object
+     * @param $name
+     * @param $value
+     * @throws \Exception
      * @return Query
      */
-    public function addData( DataObject $object )
+    public function addData( $name, $value )
     {
-        $this->data[] = $object;
+        try {
+            $dataObject = new DataObject( $name, $value );
+            $this->data[] = $dataObject;
+        } catch ( \Exception $e ) {
+            throw new \Exception( 'Object could not be added: ' . $e->getMessage() );
+        }
         return $this;
     }
 

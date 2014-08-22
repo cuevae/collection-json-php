@@ -31,7 +31,7 @@ class QueryTest extends PHPUnit_Framework_TestCase
     public function testAddData()
     {
         $pair1 = new \CollectionPlusJson\DataObject( 'testName', 'testValue' );
-        $data = $this->query->addData( $pair1 )->getData();
+        $data = $this->query->addData( 'testName', 'testValue' )->getData();
         $this->assertTrue( is_array( $data ) );
         $this->assertCount( 1, $data );
         $this->assertEquals( $pair1, $data[0] );

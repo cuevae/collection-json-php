@@ -4,7 +4,7 @@
 
 # collectionPlusJson-php
 
-version: 0.5.1
+version: 0.5.2
 
 ## Introduction
 >**Collection+JSON** is a JSON-based read/write hypermedia-type designed to support management and querying of simple collections.

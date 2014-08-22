@@ -7,7 +7,7 @@ use CollectionPlusJson\Util\Href;
 class Collection
 {
 
-    const VERSION = '0.5.1';
+    const VERSION = '0.5.2';
 
     /** @var  Href */
     protected $href;

@@ -70,6 +70,7 @@ class HrefTest extends PHPUnit_Framework_TestCase
     {
         return array(
             array('http://www.w3schools.com/tags/ref_colornames.asp'),
+            array('http://www.w3schools.com/tags/ref_color_tryit.asp?hex=9932CC'),
             array('http://api.estimate.local'),
             array('https://test.com/api/'),
             array('http://localhost:8080/test/1'),

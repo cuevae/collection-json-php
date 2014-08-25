@@ -51,7 +51,7 @@ $colors->setTemplate($template);
 $error = new Error('error-test', 'ABC123', 'This is a test error. Server has encountered a problem and could not process your request, please try later.');
 $colors->setError($error);
 
-$app->response->headers->set('Content-Type', 'application/json');
+$app->response->headers->set('Content-Type', 'application/vnd.collection+json');
 echo json_encode($colors->output());
 
 /*

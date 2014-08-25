@@ -16,10 +16,13 @@ version: 1.0.1
 ## Example
 ```php
 
+//Build the collection object
 $colors = new Collection('http://api.colors.io/');
 
+//Add a Link to the collection object
 $colors->addLink(new Link($colors->getHref()->extend('rss'), 'feed', 'rss-feed', '', 'Subscribe to our RSS feed!'));
 
+//Build an item
 $color1 = new Item($colors->getHref()->extend('color1'));
 $color1->addData('id', '1', 'This is the color id.')
        ->addData('hex_value', '#9932CC', 'This is the color in hex format.')
@@ -27,6 +30,7 @@ $color1->addData('id', '1', 'This is the color id.')
 $color1->addLink(new Link('http://www.w3schools.com/tags/ref_colornames.asp', 'source'));
 $color1->addLink(new Link('http://www.w3schools.com/tags/ref_color_tryit.asp?hex=9932CC', 'color-test'));
 
+//Build a second item
 $color2 = new Item($colors->getHref()->extend('color2'));
 $color2->addData('id', '2', 'This is the color id.')
        ->addData('hex_value', '#FFFFF0', 'This is the color in hex format.')
@@ -34,12 +38,15 @@ $color2->addData('id', '2', 'This is the color id.')
 $color2->addLink(new Link('http://www.w3schools.com/tags/ref_colornames.asp', 'source'));
 $color2->addLink(new Link('http://www.w3schools.com/tags/ref_color_tryit.asp?hex=FFFFF0', 'color-test'));
 
+//Add both items
 $colors->addItems([$color1, $color2]);
 
+//Build a collection query
 $query = new Query($colors->getHref()->extend('search'), 'search');
 $query->addData('search');
 $colors->addQuery($query);
 
+//Set the collection template
 $template = new Template();
 $template->addData('id', 'This is the color id.')
          ->addData('hex_value', 'This is the color in hex format.')
@@ -48,9 +55,11 @@ $template->addData('id', 'This is the color id.')
          ->addData('color-test', 'Link to test how your color looks with other colors.');
 $colors->setTemplate($template);
 
+//Set an error
 $error = new Error('error-test', 'ABC123', 'This is a test error. Server has encountered a problem and could not process your request, please try later.');
 $colors->setError($error);
 
+//Send response
 $app->response->headers->set('Content-Type', 'application/vnd.collection+json');
 echo json_encode($colors->output());
 

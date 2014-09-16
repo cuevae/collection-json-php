@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/cuevae/collectionPlusJson-php.svg?branch=master)](https://travis-ci.org/cuevae/collectionPlusJson-php)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cuevae/collectionPlusJson-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/cuevae/collectionPlusJson-php/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/cuevae/collectionPlusJson-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/cuevae/collectionPlusJson-php/?branch=master)
+[![Build Status](https://travis-ci.org/cuevae/collection-json-php.svg?branch=master)](https://travis-ci.org/cuevae/collection-json-php)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cuevae/collection-json-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/cuevae/collection-json-php/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/cuevae/collection-json-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/cuevae/collection-json-php/?branch=master)
 
 # collectionPlusJson-php
 

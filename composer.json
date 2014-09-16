@@ -1,14 +1,14 @@
 {
-    "name": "cuevae/collection-plus-json",
+    "name": "cuevae/collection-json-php",
     "type" : "library",
     "description": "Collection+Json PHP library. This is a read/write hypermedia-type designed to support management and querying of simple collections.",
-    "keywords": ["collection", "json", "collection-plus-json", "hypermedia", "rest", "soa", "php", "api", "library"],
+    "keywords": ["hypermedia", "collection-json-php-library", "collection", "json" , "php", "library", "rest", "soa", "api"],
     "homepage": "https://github.com/cuevae/collectionPlusJson-php",
     "license": "MIT",
     "authors": [
         {
             "name": "Enmanuel Cueva",
-            "email": "cueva.e@hotmail.com",
+            "email": "enmanuel@cueva-e.me",
             "homepage": "http://cueva-e.me",
             "role": "Software Engineer/Developer"
         }

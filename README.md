@@ -13,6 +13,41 @@ version: 1.0.1
 >
 >*From Collection+JSON [site](http://amundsen.com/media-types/collection/format/)*
 
+##Installation
+
+0. Install composer.phar (if you don't already have it)
+    - [*nix installation guide](https://getcomposer.org/doc/00-intro.md#installation-nix)
+    - [Windows installation guide](https://getcomposer.org/doc/00-intro.md#installation-windows)
+
+1. Edit your `composer.json` file to include the library
+    ```json
+       "require": {
+              "other/libraries" : "..."
+              "cuevae/collection-json-php": "*"
+       }
+    ```
+
+2. Check you are good to go
+    ```PHP
+       require '../vendor/autoload.php';
+       
+       $test = new \CollectionPlusJson\Collection('http://api.test.io');
+       echo json_encode($test->output());
+    ```
+    That code should output:
+    ```JSON
+       {"collection":
+          {"version":"1.0.1",
+           "href":"http:\/\/api.test.io",
+           "links":[],
+           "items":[],
+           "queries":[],
+           "template":null,
+           "error":null
+           }
+       }
+    ```
+
 ## Example
 ```php
 

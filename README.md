@@ -23,7 +23,7 @@ version: 1.0.1
     ```json
        "require": {
               "other/libraries" : "..."
-              "cuevae/collection-json-php": "*"
+              "cuevae/collection-plus-json": "*"
        }
     ```
 

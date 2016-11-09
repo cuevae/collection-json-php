@@ -15,15 +15,12 @@ class Href
 
     /**
      * @param $url
+     * @param $validate flag to validate url
      *
      * @throws InvalidUrl
      */
     public function __construct( $url )
     {
-        if (!$this->isValid( $url )) {
-            throw new InvalidUrl( sprintf( '"%s" is not a valid url', $url ) );
-        }
-
         $this->url = $url;
     }
 
@@ -55,12 +52,35 @@ class Href
         return new Href( $this->getUrl() . $ext );
     }
 
-
     /**
      * @return string
      */
     public function output()
     {
         return $this->getUrl();
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     */
+    public function replace( $key, $value )
+    {
+        $this->url = str_replace("{" . $key . "}", $value, $this->getUrl());
+
+        return $this;
+    }
+
+    /**
+     * Validate the url
+     *
+     */
+    public function validate()
+    {
+        if (!$this->isValid( $this->getUrl() )) {
+            throw new InvalidUrl( sprintf( '"%s" is not a valid url', $this->url ) );
+        }
+
+        return $this;
     }
 }

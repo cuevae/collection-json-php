@@ -63,16 +63,16 @@ class Template extends DataEditor
                 if($data->getName() == lcfirst($match[0])){
                     return $data->getValue();
                 }
-                $this->triggerNoMethodError();
             }
+            $this->triggerNoMethodError();
         } else if(preg_match('#^set(.+)#', $name, $match)) {
             foreach ($this->data as $data) {
                 if($data->getName() == lcfirst($match[0])){
                     $data->setValue($arguments[0]);
                     return $this;
                 }
-                $this->triggerNoMethodError();
             }
+            $this->triggerNoMethodError();
         } else {
             $this->triggerNoMethodError();
         }

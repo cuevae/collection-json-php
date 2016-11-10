@@ -22,7 +22,9 @@ class Href
     public function __construct( $url, $validate = true )
     {
         $this->url = $url;
-        $this->validate();
+        if ($validate) {
+            $this->validate();
+        }
     }
 
     /**

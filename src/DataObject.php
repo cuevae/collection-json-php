@@ -107,4 +107,28 @@ class DataObject
         }
         return $object;
     }
+
+    /**
+     * Get a data object value by name
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        if(preg_match('#^get(.+)#', $name, $match)){
+            if ($this->name = lcfirst($match[0])) {
+                return $this->value;
+            } else {
+                $this->triggerNoMethodError();
+            }
+        } else if(preg_match('#^set(.+)#', $name, $match)) {
+            if ($this->name = lcFirst($match[0])) {
+                $this->value = $arguments[0];
+                return $this;
+            } else {
+                $this->triggerNoMethodError();
+            }
+        } else {
+            $this->triggerNoMethodError();
+        }
+    }
 }

@@ -4,14 +4,11 @@ namespace CollectionPlusJson;
 
 use \CollectionPlusJson\Util\Href;
 
-class Item
+class Item extends DataEditor
 {
 
     /** @var Href */
     protected $href;
-
-    /** @var  DataObject[] */
-    protected $data = array();
 
     /** @var  Link[] */
     protected $links = array();
@@ -58,41 +55,12 @@ class Item
         return $this;
     }
 
-
     /**
      * @return Link[]
      */
     public function getLinks()
     {
         return $this->links;
-    }
-
-    /**
-     * @param $name
-     * @param $value
-     * @param string $prompt
-     *
-     * @throws \Exception
-     *
-     * @return Item
-     */
-    public function addData( $name, $value, $prompt = '' )
-    {
-        try {
-            $dataObject = new DataObject( $name, $value, $prompt );
-            $this->data[] = $dataObject;
-        } catch ( \Exception $e ) {
-            throw new \Exception( 'Object could not be added: ' . $e->getMessage() );
-        }
-        return $this;
-    }
-
-    /**
-     * @return DataObject[]
-     */
-    public function getData()
-    {
-        return $this->data;
     }
 
     /**

@@ -4,7 +4,7 @@ namespace CollectionPlusJson;
 
 use \CollectionPlusJson\Util\Href;
 
-class Query
+class Query extends DataEditor
 {
 
     /** @var  Href */
@@ -15,9 +15,6 @@ class Query
 
     /** @var  string */
     protected $prompt;
-
-    /** @var  DataObject[] */
-    protected $data;
 
     /**
      * @param string|Href $href
@@ -79,22 +76,6 @@ class Query
     }
 
     /**
-     * @param $name
-     * @throws \Exception
-     * @return Query
-     */
-    public function addData( $name )
-    {
-        try {
-            $dataObject = new DataObject( $name, '' );
-            $this->data[] = $dataObject;
-        } catch ( \Exception $e ) {
-            throw new \Exception( 'Object could not be added: ' . $e->getMessage() );
-        }
-        return $this;
-    }
-
-    /**
      * @return Href
      */
     public function getHref()
@@ -121,14 +102,6 @@ class Query
     public function getPrompt()
     {
         return $this->prompt;
-    }
-
-    /**
-     * @return DataObject[]
-     */
-    public function getData()
-    {
-        return $this->data;
     }
 
     /**

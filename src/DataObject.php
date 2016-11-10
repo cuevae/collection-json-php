@@ -131,4 +131,9 @@ class DataObject
             $this->triggerNoMethodError();
         }
     }
+
+    private function triggerNoMethodError($name)
+    {
+        trigger_error("Call to undefined method: " . $name, E_USER_ERROR);
+    }
 }

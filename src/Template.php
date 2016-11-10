@@ -77,4 +77,9 @@ class Template extends DataEditor
             $this->triggerNoMethodError();
         }
     }
+
+    private function triggerNoMethodError()
+    {
+        trigger_error("Call to undefined method: " . $name, E_USER_ERROR);
+    }
 }

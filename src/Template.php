@@ -61,7 +61,7 @@ class Template extends DataEditor
         if(preg_match('#^get(.+)#', $name, $match)){
             foreach ($this->data as $data) {
                 if($data->getName() == lcfirst($match[0])){
-                    return $data->getName();
+                    return $data->getValue();
                 }
                 $this->triggerNoMethodError();
             }

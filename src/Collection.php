@@ -27,15 +27,33 @@ class Collection
     /** @var  Error */
     protected $error;
 
+    /** @var  string */
+    private $json = array();
+
+    /** @var  string */
+    private $version;
+
     /**
      * @param string $href|Href
      */
-    public function __construct( $href )
+    public function __construct( $data )
     {
-        if(!$href instanceof Href){
-            $href = new Href($href);
+        if($data instanceof Href){
+            $this->href = $data;
+        } else if(is_array($data)){
+
+            //assign the json data array
+            $this->json = $data['collection'];
+            $this->assignVersion();
+            $this->assignHref();
+            $this->assignError();
+            $this->assignLinks();
+            $this->assignItems();
+            $this->assignTemplate();
+            $this->assignQueries();
+        } else {
+            $this->href = new Href($data);
         }
-        $this->href = $href;
     }
 
     /**
@@ -49,9 +67,23 @@ class Collection
     /**
      * @return string
      */
+    public function getJson()
+    {
+        return $this->json;
+    }
+
+    /**
+     * @return string
+     */
     public function getVersion()
     {
-        return self::VERSION;
+        if(!is_null($this->version)) {
+            $version = $this->version;
+        } else {
+            $version = self::VERSION;
+        }
+
+        return $version;
     }
 
     /**
@@ -130,6 +162,14 @@ class Collection
     }
 
     /**
+     * @return Template
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
      * @param Error $error
      * @return Collection
      */
@@ -140,11 +180,28 @@ class Collection
     }
 
     /**
+     * @return Error
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
      * @return \StdClass
      */
     public function output()
     {
-        $properties = get_object_vars( $this );
+        //$properties = get_object_vars( $this );
+        $properties = array(
+            'version' => $this->getVersion(),
+            'href' => $this->href,
+            'links' => $this->links,
+            'items' => $this->items,
+            'queries' => $this->queries,
+            'template' => $this->template,
+            'error' => $this->error,
+        );
         $wrapper = new \stdClass();
         $collection = new \StdClass();
         $collection->version = $this->getVersion();
@@ -163,5 +220,75 @@ class Collection
         }
         $wrapper->collection = $collection;
         return $wrapper;
+    }
+
+    private function assignVersion()
+    {
+        if (isset($this->json['version'])) {
+            $this->version = $this->json['version'];
+        }
+    }
+
+    private function assignHref()
+    {
+        if (isset($this->json['href'])) {
+            $this->href = new Href($this->json['href']);
+        }
+    }
+
+    private function assignItems()
+    {
+        if (isset($this->json['items'])) {
+            foreach ($this->json['items'] as $item) {
+                $itemObject = new Item($item['href']);
+                foreach ($item['data'] as $data) {
+                    $itemObject->addData($data['name'], $data['value'], $data['prompt']);
+                }
+                foreach ($item['links'] as $link) {
+                    $itemObject->addLink(new Link($link['href'], $link['rel'], $link['name'], $link['render'], $link['prompt']));
+                }
+                $this->items[] = $itemObject;
+            }
+        }
+    }
+
+    private function assignTemplate()
+    {
+        if (isset($this->json['template'])) {
+            $this->template = new Template();
+            foreach ($this->json['template'] as $template) {
+                $this->template->addData($template['name'], $template['prompt']);
+            }
+        }
+    }
+
+    private function assignLinks()
+    {
+        if (isset($this->json['links'])) {
+            foreach ($this->json['links'] as $link) {
+                $this->links[] = new Link($link['href'], $link['rel'], $link['name'], $link['render'], $link['prompt']);
+            }
+        }
+    }
+
+    private function assignQueries()
+    {
+        if (isset($this->json['queries'])) {
+            foreach ($this->json['queries'] as $query) {
+                $queryObject = new Query($query['href'], $query['rel'], $query['prompt']);
+                foreach ($query['data'] as $data) {
+                    $queryObject->addData($data['name'], $data['value'], $data['prompt']);
+                }
+                $this->queries[] = $queryObject;
+            }
+        }
+    }
+
+    private function assignError()
+    {
+        if (isset($this->json['error'])) {
+            $error = $this->json['error'];
+            $this->error = new Error($error['title'], $error['code'], $error['message']);
+        }
     }
 }

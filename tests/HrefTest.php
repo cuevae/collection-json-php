@@ -33,7 +33,8 @@ class HrefTest extends PHPUnit_Framework_TestCase
      */
     public function testNonAcceptedUrls($url)
     {
-        new Href($url);
+        $href = new Href($url);
+        $href->validate();
     }
 
     /**

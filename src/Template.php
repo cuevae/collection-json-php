@@ -60,14 +60,14 @@ class Template extends DataEditor
     {
         if(preg_match('#^get(.+)#', $name, $match)){
             foreach ($this->data as $data) {
-                if($data->getName() == lcfirst($match[0])){
+                if($data->getName() == lcfirst($match[1])){
                     return $data->getValue();
                 }
             }
             $this->triggerNoMethodError();
         } else if(preg_match('#^set(.+)#', $name, $match)) {
             foreach ($this->data as $data) {
-                if($data->getName() == lcfirst($match[0])){
+                if($data->getName() == lcfirst($match[1])){
                     $data->setValue($arguments[0]);
                     return $this;
                 }

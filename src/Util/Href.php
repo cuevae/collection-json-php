@@ -19,7 +19,7 @@ class Href
      *
      * @throws InvalidUrl
      */
-    public function __construct( $url, $validate = true )
+    public function __construct( $url, $validate = false )
     {
         $this->url = $url;
         if ($validate) {

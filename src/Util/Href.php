@@ -69,7 +69,7 @@ class Href
      */
     public function replace( $key, $value )
     {
-        if($value == "") {
+        if($value === "" || is_null($value) || $value === false) {
             $this->url = preg_replace("#/{" . $key . "}.*$#", "", $this->getUrl());
         } else {
             $this->url = str_replace("{" . $key . "}", $value, $this->getUrl());

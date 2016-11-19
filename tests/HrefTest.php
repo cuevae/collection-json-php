@@ -38,6 +38,19 @@ class HrefTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $url
+     *
+     * @dataProvider replacementUrls
+     *
+     */
+    public function testReplace($url, $key, $value, $expected)
+    {
+        $href = new Href($url);
+        $href->replace($key, $value);
+        $this->assertEquals($expected, $href->getUrl());
+    }
+
+    /**
      * @param $ext
      *
      * @dataProvider validExtensions
@@ -59,7 +72,8 @@ class HrefTest extends PHPUnit_Framework_TestCase
      */
     public function testExtendingUrlWithInvalidExtension($ext)
     {
-        $this->href->extend($ext);
+        $href = $this->href->extend($ext);
+        $href->validate();
     }
 
     public function testOutput()
@@ -126,6 +140,16 @@ class HrefTest extends PHPUnit_Framework_TestCase
             array('_'),
             array('\\'),
             array('/'),
+        );
+    }
+
+    public function replacementUrls()
+    {
+        return array(
+            array('http://example.com/{replace}/path2', 'replace', 'path1', 'http://example.com/path1/path2'),
+            array('http://example.com/path2/{replace}', 'replace', 'path1', 'http://example.com/path2/path1'),
+            array('http://example.com/path2/{replace}', 'replace', '', 'http://example.com/path2'),
+            array('http://example.com/path2/{replace}/path3', 'replace', '', 'http://example.com/path2'),
         );
     }
 }

@@ -64,7 +64,7 @@ class Template extends DataEditor
                     return $data->getValue();
                 }
             }
-            $this->triggerNoMethodError();
+            $this->triggerNoMethodError($name);
         } else if(preg_match('#^set(.+)#', $name, $match)) {
             foreach ($this->data as $data) {
                 if($data->getName() == lcfirst($match[1])){
@@ -72,9 +72,9 @@ class Template extends DataEditor
                     return $this;
                 }
             }
-            $this->triggerNoMethodError();
+            $this->triggerNoMethodError($name);
         } else {
-            $this->triggerNoMethodError();
+            $this->triggerNoMethodError($name);
         }
     }
 

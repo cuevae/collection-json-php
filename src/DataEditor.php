@@ -39,7 +39,7 @@ abstract class DataEditor
     /**
      * Method not found error
      */
-    protected function triggerNoMethodError()
+    protected function triggerNoMethodError($name)
     {
         trigger_error("Call to undefined method " . __CLASS__ . '::' . $name . '()', E_USER_ERROR);;
     }

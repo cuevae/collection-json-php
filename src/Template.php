@@ -91,7 +91,7 @@ class Template extends DataEditor
     {
         foreach ($this->data as $templateData) {
             foreach ($item->getData() as $itemData) {
-                if ($itemData->getName() === $templateData->getName) {
+                if ($itemData->getName() === $templateData->getName()) {
                     $templateData->setName($itemData->getName());
                     $templateData->setValue($itemData->getValue());
                     $templateData->setPrompt($itemData->getPrompt());

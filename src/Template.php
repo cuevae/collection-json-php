@@ -6,8 +6,12 @@ class Template extends DataEditor
 {
     /**
      * Override the default method
+     *
+     * @param string $name The name of the data
+     * @param string $prompt The prompt name
+     * @param string $value The value. Note: this is ignored 
      */
-    public function addData( $name, $prompt = '' )
+    public function addData( $name, $prompt = '', $value = '' )
     {
         return parent::addData($name, '', $prompt);
     }
@@ -78,4 +82,23 @@ class Template extends DataEditor
         }
     }
 
+    /**
+     * Import Item object into template
+     *
+     * @return Template
+     */
+    public function importItem(Item $item)
+    {
+        foreach ($this->data as $templateData) {
+            foreach ($item->getData() as $itemData) {
+                if ($itemData->getName() === $templateData->getName) {
+                    $templateData->setName($itemData->getName());
+                    $templateData->setValue($itemData->getValue());
+                    $templateData->setPrompt($itemData->getPrompt());
+                }
+            }
+        }
+
+        return $this;
+    }
 }

@@ -7,7 +7,7 @@ use CollectionPlusJson\Util\Href;
 class Collection
 {
 
-    const VERSION = '1.0.1';
+    const VERSION = '1.0';
 
     /** @var  Href */
     protected $href;
@@ -133,6 +133,20 @@ class Collection
         return $this->items;
     }
 
+    /**
+     * getFirstItem
+     *
+     * @return 
+     */
+    public function getFirstItem()
+    {
+        $items = $this->getItems();
+        if (isset($items[0])) {
+            return $items[0];
+        }
+
+        return null;
+    }
     /**
      * @param Query $query
      * @return Collection

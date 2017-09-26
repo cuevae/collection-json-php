@@ -58,6 +58,17 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( $item, $items[0] );
     }
 
+    public function testGetFirstItem()
+    {
+        $item = new Item( new Href( $this->href ) );
+        $this->collection->addItem( $item );
+        $item = new Item( new Href('test') );
+        $this->collection->addItem( $item );
+
+        $item = $this->collection->getFirstItem();
+        $this->assertTrue($item !== null);
+        $this->assertEquals($item->getHref()->getUrl(), $this->href );
+    }
     public function testAddQuery()
     {
         $query = new Query( new Href( $this->href ), 'test' );

@@ -95,7 +95,7 @@ $template->addData('id', 'This is the color id.')
          ->addData('color-test', 'Link to test how your color looks with other colors.');
 
 // or add data with dynamic setter
-$template->setSource('source', 'Link to colors source');
+$template->setSource('Link to colors source');
 
 $colors->setTemplate($template);
 

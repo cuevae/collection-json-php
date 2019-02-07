@@ -5,6 +5,28 @@ namespace CollectionPlusJson;
 class Template extends DataEditor
 {
     /**
+     * The class constructor.
+     *
+     * @param array|null $data An optional template json string to parse
+     */
+    public function __construct($data = null)
+    {
+        if(
+            !is_null($data) 
+            && 
+            is_array($data)
+            &&
+            isset($data['template']['data'])
+        ){
+
+            //assign the json data array
+            foreach ($data['template']['data'] as $row) {
+                parent::addData($row['name'], $row['value']);
+            }
+        }
+    }
+
+    /**
      * Override the default method
      *
      * @param string $name The name of the data

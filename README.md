@@ -30,7 +30,7 @@ version: 1.0.1
 2. Check you are good to go
     ```PHP
        require '../vendor/autoload.php';
-       
+
        $test = new \CollectionPlusJson\Collection('http://api.test.io');
        echo json_encode($test->output());
     ```
@@ -239,4 +239,49 @@ Output would be:
 
 */
 
+```
+
+# Consume a Collection+JSON objects
+
+This functionality enables a plain json string in Collection+JSON format to be consumed and translated into a Collection object for easy manipulation.
+
+Example with transfer object:
+
+```php
+// init Collection object with json string to parse
+$collection = new Collection($collectionJson);
+
+// get the first item
+$item = $collection->getFirstItem();
+
+// get a fake transfer object
+$entity = new ExampleEntity();
+
+// add the data
+$entity->setFoo($item->getFoo());
+$entity->setBar($item->getBar());
+
+// save to example database
+$repo->persist($entity);
+$repo->flush();
+```
+Example with template object from post Request:
+
+```php
+// init Collection object with json string to parse
+$collection = new Collection($collectionJson);
+
+// get the first item
+$template = $collection->getTemplate();
+
+// get a fake transfer object
+$entity = new ExampleEntity();
+
+// add the data
+$entity->setFoo($template->getFoo());
+$entity->setBar($template->getBar());
+
+// save to example database
+$repo->persist($entity);
+$repo->flush();
 ```

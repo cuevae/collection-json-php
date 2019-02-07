@@ -20,10 +20,6 @@ class Href
      */
     public function __construct( $url, $validate = false )
     {
-        if ($validate && !$this->isValid( $url )) {
-            throw new InvalidUrl( sprintf( '"%s" is not a valid url', $url ) );
-        }
-
         $this->url = $url;
         if ($validate) {
             $this->validate();

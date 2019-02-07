@@ -33,7 +33,7 @@ class HrefTest extends PHPUnit_Framework_TestCase
      */
     public function testNonAcceptedUrls($url)
     {
-        new Href($url);
+        new Href($url, true);
     }
 
     /**
@@ -58,12 +58,26 @@ class HrefTest extends PHPUnit_Framework_TestCase
      */
     public function testExtendingUrlWithInvalidExtension($ext)
     {
-        $this->href->extend($ext);
+        $this->href->extend($ext, true);
     }
 
     public function testOutput()
     {
         $this->assertEquals( 'http://test.com/api/', $this->href->output() );
+    }
+
+    /**
+     * @param string $template The url template
+     * @param string $result The desired result
+     * @param array $keyValue The replacement key value
+     *
+     * @dataProvider urlTemplates
+     */
+    public function testUrlReplacement($template, $result, $key, $value)
+    {
+        $href = new Href($template);
+        $href->replace($key, $value);
+        $this->assertEquals($result, $href->getUrl());
     }
 
     public function validUrls()
@@ -114,6 +128,24 @@ class HrefTest extends PHPUnit_Framework_TestCase
             array('1'),
             array('ext/t'),
             array('ext/test'),
+        );
+    }
+
+    public function urlTemplates()
+    {
+        return array(
+            array(
+                'http://test.com/api/{resource}/',
+                'http://test.com/api/foo/',
+                'resource',
+                'foo'
+            ),
+            array(
+                'http://test.com/api/foo/{teSt_TEST}/',
+                'http://test.com/api/foo/bar/',
+                'teSt_TEST',
+                'bar'
+            )
         );
     }
 

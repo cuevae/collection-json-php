@@ -258,7 +258,7 @@ Example with transfer object:
 
 ```php
 // init Collection object with json string to parse
-$collection = new Collection($collectionJson);
+$collection = new Collection(json_decode($collectionJson, true));
 
 // get the first item
 $item = $collection->getFirstItem();
@@ -277,11 +277,8 @@ $repo->flush();
 Example with template object from POST/PUT request. See [Collection+JSON Documentation](http://amundsen.com/media-types/collection/examples/#ex-write) for details
 
 ```php
-// init Collection object with json string to parse
-$collection = new Collection($collectionJson);
-
-// get the first item
-$template = $collection->getTemplate();
+// init Template object with json string to parse
+$template = new Template(json_decode($collectionJsonTemplate, true));
 
 // get a fake transfer object
 $entity = new ExampleEntity();

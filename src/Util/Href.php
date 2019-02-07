@@ -6,7 +6,6 @@ use CollectionPlusJson\Util\Href\Exception\InvalidUrl;
 
 class Href
 {
-
     /** @var  string */
     protected $url;
 
@@ -21,6 +20,10 @@ class Href
      */
     public function __construct( $url, $validate = false )
     {
+        if ($validate && !$this->isValid( $url )) {
+            throw new InvalidUrl( sprintf( '"%s" is not a valid url', $url ) );
+        }
+
         $this->url = $url;
         if ($validate) {
             $this->validate();
@@ -45,14 +48,17 @@ class Href
     }
 
     /**
+     * Concat an extension to the url
+     * 
      * @param $ext
+     * @param $validate flag to validate url
      * @return Href
      *
      * @throws InvalidUrl
      */
-    public function extend( $ext )
+    public function extend( $ext, $validate = false )
     {
-        return new Href( $this->getUrl() . $ext );
+        return new Href( $this->getUrl() . $ext, $validate );
     }
 
     /**
@@ -64,8 +70,12 @@ class Href
     }
 
     /**
+     * Replace a substring for making URL templates
+     * 
      * @param $key
      * @param $value
+     *
+     * @return Href
      */
     public function replace( $key, $value )
     {
@@ -81,6 +91,7 @@ class Href
     /**
      * Validate the url
      *
+     * @return Href
      */
     public function validate()
     {

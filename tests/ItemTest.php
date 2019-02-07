@@ -58,15 +58,19 @@ class ItemTest extends PHPUnit_Framework_TestCase
     public function testGettersAndSetters()
     {
         $this->item->addData( 'testName1', 'testValue1', 'This is pair 1' )
-                   ->addData( 'testName2', 'testValue2', 'This is pair 2' );
+                   ->addData( 'testName2', 'testValue2', 'This is pair 2' )
+                   ->addData( 'test_name3', 'test_value3', 'This is pair 3' );
 
         $this->assertEquals('testValue1', $this->item->getTestName1());
         $this->assertEquals('testValue2', $this->item->getTestName2());
+        $this->assertEquals('test_value3', $this->item->getTest_name3());
 
         $this->item->setTestName1('testValue3', 'This is pair 3');
         $this->item->setTestName2('testValue4', 'This is pair 4');
+        $this->item->setTest_name3('testValue5', 'This is pair 5');
 
         $this->assertEquals('testValue3', $this->item->getTestName1());
         $this->assertEquals('testValue4', $this->item->getTestName2());
+        $this->assertEquals('testValue5', $this->item->getTest_name3());
     }
 }

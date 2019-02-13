@@ -139,4 +139,29 @@ class Link
         }
         return $object;
     }
+    /**
+     * follow
+     *
+     * @return Collection
+     */
+    public function follow($params = null)
+    {
+        $href = $this->getHref();
+
+        // Create a stream
+        $opts = [
+            "http" => [
+                "method" => "GET",
+                "header" =>
+                    "Content-Type: application/vnd.collection+json\r\n"
+            ]
+        ];
+
+        if (is_array($params)) {
+            $href .= '?' . http_build_query($params);
+        }
+        $response = file_get_contents($href, false, $opts);
+        $collection = new Collection($resopnse);
+        return $collection;
+    }
 }

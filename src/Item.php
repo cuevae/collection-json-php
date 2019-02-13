@@ -4,14 +4,11 @@ namespace CollectionPlusJson;
 
 use \CollectionPlusJson\Util\Href;
 
-class Item
+class Item extends DataEditor
 {
 
     /** @var Href */
     protected $href;
-
-    /** @var  DataObject[] */
-    protected $data = array();
 
     /** @var  Link[] */
     protected $links = array();
@@ -58,41 +55,12 @@ class Item
         return $this;
     }
 
-
     /**
      * @return Link[]
      */
     public function getLinks()
     {
         return $this->links;
-    }
-
-    /**
-     * @param $name
-     * @param $value
-     * @param string $prompt
-     *
-     * @throws \Exception
-     *
-     * @return Item
-     */
-    public function addData( $name, $value, $prompt = '' )
-    {
-        try {
-            $dataObject = new DataObject( $name, $value, $prompt );
-            $this->data[] = $dataObject;
-        } catch ( \Exception $e ) {
-            throw new \Exception( 'Object could not be added: ' . $e->getMessage() );
-        }
-        return $this;
-    }
-
-    /**
-     * @return DataObject[]
-     */
-    public function getData()
-    {
-        return $this->data;
     }
 
     /**
@@ -116,5 +84,33 @@ class Item
             $object->$name = $value;
         }
         return $object;
+    }
+    /**
+     * Get a data object value by name
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        if(preg_match('#^get(.+)#', $name, $match)){
+            foreach ($this->data as $data) {
+                if($data->getName() == lcfirst($match[1])){
+                    return $data->getValue();
+                }
+            }
+            $this->triggerNoMethodError($name);
+        } else if(preg_match('#^set(.+)#', $name, $match)) {
+            foreach ($this->data as $data) {
+                if($data->getName() == lcfirst($match[1])){
+                    $data->setValue($arguments[0]);
+                    if (isset($arguments[1])) {
+                        $data->setPrompt($arguments[1]);
+                    }
+                    return $this;
+                }
+            }
+            $this->triggerNoMethodError($name);
+        } else {
+            $this->triggerNoMethodError($name);
+        }
     }
 }

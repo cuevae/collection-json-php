@@ -107,4 +107,33 @@ class DataObject
         }
         return $object;
     }
+
+    /**
+     * Get a data object value by name
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        if(preg_match('#^get(.+)#', $name, $match)){
+            if ($this->name = lcfirst($match[1])) {
+                return $this->value;
+            } else {
+                $this->triggerNoMethodError();
+            }
+        } else if(preg_match('#^set(.+)#', $name, $match)) {
+            if ($this->name = lcFirst($match[1])) {
+                $this->value = $arguments[0];
+                return $this;
+            } else {
+                $this->triggerNoMethodError();
+            }
+        } else {
+            $this->triggerNoMethodError();
+        }
+    }
+
+    private function triggerNoMethodError($name)
+    {
+        trigger_error("Call to undefined method: " . $name, E_USER_ERROR);
+    }
 }

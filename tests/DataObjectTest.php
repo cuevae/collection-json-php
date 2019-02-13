@@ -13,6 +13,18 @@ class DataObjectTest extends PHPUnit_Framework_TestCase
         $this->object = new DataObject( 'testObject', 'testValue', 'This is a test DataObject' );
     }
 
+    public function testSetMethod()
+    {
+        $set = 'TEST';
+        $this->object->setTestObject($set);
+        $this->assertEquals( $set,  $this->object->getTestObject() );
+    }
+
+    public function testGetMethod()
+    {
+        $this->assertEquals( 'testValue', $this->object->getTestObject() );
+    }
+
     public function testOutput()
     {
         $output = $this->object->output();

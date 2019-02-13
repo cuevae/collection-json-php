@@ -30,7 +30,7 @@ version: 1.0.1
 2. Check you are good to go
     ```PHP
        require '../vendor/autoload.php';
-       
+
        $test = new \CollectionPlusJson\Collection('http://api.test.io');
        echo json_encode($test->output());
     ```
@@ -60,16 +60,22 @@ $colors->addLink(new Link($colors->getHref()->extend('rss'), 'feed', 'rss-feed',
 //Build an item
 $color1 = new Item($colors->getHref()->extend('color1'));
 $color1->addData('id', '1', 'This is the color id.')
-       ->addData('hex_value', '#9932CC', 'This is the color in hex format.')
-       ->addData('human_value', 'DarkOrchid', 'This is the color in human readable format.');
+       ->addData('hex_value', '#9932CC', 'This is the color in hex format.');
+
+// or add data with dynamic setter
+$color1->setHuman_value('DarkOrchid', 'This is the color in human readable format.');
+
 $color1->addLink(new Link('http://www.w3schools.com/tags/ref_colornames.asp', 'source'));
 $color1->addLink(new Link('http://www.w3schools.com/tags/ref_color_tryit.asp?hex=9932CC', 'color-test'));
 
 //Build a second item
 $color2 = new Item($colors->getHref()->extend('color2'));
 $color2->addData('id', '2', 'This is the color id.')
-       ->addData('hex_value', '#FFFFF0', 'This is the color in hex format.')
-       ->addData('human_value', 'Ivory', 'This is the color in human readable format.');
+       ->addData('hex_value', '#FFFFF0', 'This is the color in hex format.');
+
+// or add data with dynamic setter
+$color2->setHuman_value('DarkOrchid', 'This is the color in human readable format.');
+
 $color2->addLink(new Link('http://www.w3schools.com/tags/ref_colornames.asp', 'source'));
 $color2->addLink(new Link('http://www.w3schools.com/tags/ref_color_tryit.asp?hex=FFFFF0', 'color-test'));
 
@@ -86,8 +92,11 @@ $template = new Template();
 $template->addData('id', 'This is the color id.')
          ->addData('hex_value', 'This is the color in hex format.')
          ->addData('human_value', 'This is the color in human readable format.')
-         ->addData('source', 'Link to colors source.')
          ->addData('color-test', 'Link to test how your color looks with other colors.');
+
+// or add data with dynamic setter
+$template->setSource('Link to colors source');
+
 $colors->setTemplate($template);
 
 //Set an error
@@ -239,4 +248,46 @@ Output would be:
 
 */
 
+```
+
+# Consume a Collection+JSON object
+
+This functionality enables a plain json string in Collection+JSON format to be consumed and translated into a Collection object for easy manipulation.
+
+Example with transfer object:
+
+```php
+// init Collection object with json string to parse
+$collection = new Collection(json_decode($collectionJson, true));
+
+// get the first item
+$item = $collection->getFirstItem();
+
+// get a fake transfer object
+$entity = new ExampleEntity();
+
+// add the data with dynamic getters from item object
+$entity->setFoo($item->getFoo());
+$entity->setBar($item->getBar());
+
+// save to example database
+$repo->persist($entity);
+$repo->flush();
+```
+Example with template object from POST/PUT request. See [Collection+JSON Documentation](http://amundsen.com/media-types/collection/examples/#ex-write) for details
+
+```php
+// init Template object with json string to parse
+$template = new Template(json_decode($collectionJsonTemplate, true));
+
+// get a fake transfer object
+$entity = new ExampleEntity();
+
+// add the data with dynamic getters from template object
+$entity->setFoo($template->getFoo());
+$entity->setBar($template->getBar());
+
+// save to example database
+$repo->persist($entity);
+$repo->flush();
 ```

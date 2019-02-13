@@ -27,6 +27,21 @@ class Error
         $this->message = $message;
     }
 
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
     /**
      * @return \StdClass
      */

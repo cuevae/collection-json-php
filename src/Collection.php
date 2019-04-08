@@ -216,6 +216,24 @@ class Collection
             'template' => $this->template,
             'error' => $this->error,
         );
+        $properties['version'] = $this->getVersion();
+        $properties['href'] = $this->href;
+        if (!empty($this->links)) {
+            $properties['links'] = $this->links;
+        }
+        if (!empty($this->items)) {
+            $properties['items'] = $this->items;
+        }
+        if (!empty($this->queries)) {
+            $properties['queries'] = $this->queries;
+        }
+        if (!empty($this->template)) {
+            $properties['template'] = $this->template;
+        }
+        if (!empty($this->error)) {
+            $properties['error'] = $this->error;
+        }
+
         $wrapper = new \stdClass();
         $collection = new \StdClass();
         $collection->version = $this->getVersion();

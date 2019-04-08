@@ -227,10 +227,10 @@ class Collection
         if (!empty($this->queries)) {
             $properties['queries'] = $this->queries;
         }
-        if (!empty($this->template)) {
+        if (!is_null($this->template)) {
             $properties['template'] = $this->template;
         }
-        if (!empty($this->error)) {
+        if (!is_null($this->error)) {
             $properties['error'] = $this->error;
         }
 

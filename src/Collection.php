@@ -207,15 +207,7 @@ class Collection
     public function output()
     {
         //$properties = get_object_vars( $this );
-        $properties = array(
-            'version' => $this->getVersion(),
-            'href' => $this->href,
-            'links' => $this->links,
-            'items' => $this->items,
-            'queries' => $this->queries,
-            'template' => $this->template,
-            'error' => $this->error,
-        );
+        $properties = array();
         $properties['version'] = $this->getVersion();
         $properties['href'] = $this->href;
         if (!empty($this->links)) {

@@ -103,9 +103,7 @@ class DataObject
         $properties = get_object_vars( $this );
         $object = new \StdClass();
         foreach ($properties as $name => $value) {
-            if (!empty($value)) {
-                $object->$name = $value;
-            }
+            $object->$name = $value;
         }
         return $object;
     }

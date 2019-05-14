@@ -207,15 +207,25 @@ class Collection
     public function output()
     {
         //$properties = get_object_vars( $this );
-        $properties = array(
-            'version' => $this->getVersion(),
-            'href' => $this->href,
-            'links' => $this->links,
-            'items' => $this->items,
-            'queries' => $this->queries,
-            'template' => $this->template,
-            'error' => $this->error,
-        );
+        $properties = array();
+        $properties['version'] = $this->getVersion();
+        $properties['href'] = $this->href;
+        if (!empty($this->links)) {
+            $properties['links'] = $this->links;
+        }
+        if (!empty($this->items)) {
+            $properties['items'] = $this->items;
+        }
+        if (!empty($this->queries)) {
+            $properties['queries'] = $this->queries;
+        }
+        if (!is_null($this->template)) {
+            $properties['template'] = $this->template;
+        }
+        if (!is_null($this->error)) {
+            $properties['error'] = $this->error;
+        }
+
         $wrapper = new \stdClass();
         $collection = new \StdClass();
         $collection->version = $this->getVersion();

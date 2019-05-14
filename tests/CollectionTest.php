@@ -29,9 +29,9 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $collection = $wrapper->collection;
         $this->assertNotEmpty( $collection->version );
         $this->assertEquals( $this->href, $collection->href );
-        $this->assertTrue( is_array( $collection->links ) );
-        $this->assertTrue( is_array( $collection->items ) );
-        $this->assertTrue( is_array( $collection->queries ) );
+        //$this->assertTrue( is_array( $collection->links ) );
+        //$this->assertTrue( is_array( $collection->items ) );
+        //$this->assertTrue( is_array( $collection->queries ) );
         $this->assertNotNull( $collection->template );
         $this->assertNotNull( $collection->error );
     }

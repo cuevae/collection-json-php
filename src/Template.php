@@ -47,7 +47,10 @@ class Template extends DataEditor
         foreach ($objects as &$val) {
             $val = $val->output();
         }
-        return $objects;
+        $wrapper = new \stdClass();
+        $wrapper->data = $objects;
+        return $wrapper;
+
     }
 
     /**

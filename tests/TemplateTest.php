@@ -33,7 +33,8 @@ class TemplateTest extends PHPUnit_Framework_TestCase
                                  ->addData( 'testName2', 'testValue2', 'This is pair 2' )
                                  ->output();
         $this->assertNotEmpty( $output );
-        $this->assertCount( 2, $output );
+        $this->assertNotEmpty( $output->data );
+        $this->assertCount( 2, $output->data );
     }
 
     public function testQuery()
